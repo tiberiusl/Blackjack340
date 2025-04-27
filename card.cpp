@@ -1,3 +1,5 @@
+//implementation file for the card abstract class
+
 #include "card.h"
 using namespace std;
 
