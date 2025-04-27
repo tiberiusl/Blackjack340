@@ -2,7 +2,7 @@
 #define DIAMOND_H
 
 #include "card.h"
-#include <string>
+
 
 class Diamond : public Card {
     private:

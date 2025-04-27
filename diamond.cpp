@@ -1,6 +1,5 @@
 #include "diamond.h"
-#include <iostream>
-#include <string>
+
 using namespace std;
 
 Diamond::Diamond() {
@@ -16,6 +15,6 @@ Diamond::Diamond(int val) {
 }
 
 string Diamond::getSuit() const {
-    
+
     return this->suit; // Return the suit of the card
 }
