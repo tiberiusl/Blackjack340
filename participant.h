@@ -5,22 +5,23 @@
 
 #include "LinkedList.h"
 #include "card.h"
+#include <vector>
 
 class Participant {
     protected:
-        LinkedList<Card*> hand; // List of cards in hand
+        LinkedList hand; 
         
 
     public:
-        Participant(); // Default constructor
-        virtual ~Participant(); // Destructor
+        Participant(); 
+        virtual ~Participant(); 
 
-        void addCard(Card* card); // Add a card to the hand
-        void showCards() const; // Show all cards in hand
-        void clearHand(); // Clear the hand
-        int calculateHandValue() const; // Calculate the total value of the hand
+        void addCard(Card* card); 
+        void showCards() const; 
+        void clearHand(); 
+        int calculateHandValue() const; 
         
-        virtual void takeTurn() = 0; // Pure virtual function for taking a turn
+        virtual void takeTurn() = 0; 
 
 };
 
