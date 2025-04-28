@@ -7,7 +7,8 @@ class LinkedList {
     private:
         Node* head; 
         Node* tail; 
-        int count;   
+        int count;
+           
     public:
         LinkedList(); 
         ~LinkedList(); 
