@@ -31,4 +31,14 @@ This allows for polymorphism, where different types of
 cards can be treated uniformly through the Card interface.
 */
 
+bool operator==(const Card& lhs, const Card& rhs) {
+    return lhs.getVal() == rhs.getVal();
+}
+bool operator<(const Card& lhs, const Card& rhs) {
+    return lhs.getVal() < rhs.getVal();
+}
+bool operator>(const Card& lhs, const Card& rhs) {
+    return rhs < lhs;
+}
+
 
