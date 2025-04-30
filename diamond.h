@@ -14,7 +14,6 @@ class Diamond : public Card {
         Diamond(const Diamond& toCopy);
         
         std::string getSuit() const override; 
-        std::string getSuit() const override; // Get the suit of the card
         Card* clone() const override;
 
 };
