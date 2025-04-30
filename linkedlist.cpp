@@ -90,14 +90,6 @@ void LinkedList::setHead(Node* newHead) {
     this->head = newHead; // Set the head of the list
 
 }
- 
- void LinkedList::setTail(Node* newTail) {
-    this->tail = newTail;
- }
-
- void LinkedList::setSize(int newSize) {
-    this->count = newSize;
- }
 
 void LinkedList::setTail(Node* newTail) {
 
