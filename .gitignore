@@ -9,3 +9,5 @@
 
 # VS Code settings
 .vscode/
+build.bat
+test.exe
