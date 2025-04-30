@@ -3,6 +3,8 @@
 *.obj
 *.exe
 *.out
+*.ilk
+*.pdb
 ...
 
 # VS Code settings
