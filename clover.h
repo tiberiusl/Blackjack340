@@ -14,7 +14,7 @@ class Clover : public Card {
 
         std::string getSuit() const override; // Get the suit of the card
         Card* clone() const override;
-
+        std::string getSuit() const override;
 
 };
 

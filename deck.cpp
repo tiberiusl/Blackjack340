@@ -32,7 +32,7 @@ void Deck::takeTurn() { //populates a linkedlist with 52 cards
         Card* clover  = new Clover(scores[i]); //set facevalue of card accordingly
         clover->setName(values[i]); //set name of card accordingly
         this->deck->push_back(clover);
-    }
+}
 }
 
 void Deck::shuffle() {

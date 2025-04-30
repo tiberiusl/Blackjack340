@@ -5,13 +5,13 @@ using namespace std;
 Clover::Clover() {
 
     setVal(0);
-    this->suit = "clover"; // Default suit
+    this->suit = "Clover"; 
 }
 
 Clover::Clover(int val) {
 
     setVal(val);
-    this->suit = "clover"; // Default suit
+    this->suit = "Clover"; 
 }
 
 Clover::Clover(const Clover& toCopy) {

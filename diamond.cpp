@@ -5,13 +5,13 @@ using namespace std;
 Diamond::Diamond() {
 
     setVal(0);
-    this->suit = "Diamond"; // Default suit
+    this->suit = "Diamond"; 
 }
 
 Diamond::Diamond(int val) {
 
     setVal(val);
-    this->suit = "Diamond"; // Default suit
+    this->suit = "Diamond"; 
 }
 
 Diamond::Diamond(const Diamond& toCopy) {

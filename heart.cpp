@@ -5,7 +5,7 @@ using namespace std;
 Heart::Heart() {
 
     setVal(0);
-    this->suit = "heart"; // Default suit
+    this->suit = "heart"; 
 }
 
 Heart::Heart(int val) {
@@ -20,9 +20,15 @@ Heart::Heart(const Heart& toCopy) {
     this->suit = "Heart";
 }
 
+Heart::Heart(const Heart& toCopy) {
+    this->faceValue = toCopy.getVal();
+    this->name = toCopy.getName();
+    this->suit = "Heart";
+}
+
 string Heart::getSuit() const {
     
-    return this->suit; // Return the suit of the card
+    return this->suit; 
 }
 
 Card* Heart::clone() const {

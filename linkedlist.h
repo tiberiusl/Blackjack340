@@ -2,26 +2,28 @@
 #define LINKEDLIST_H
 
 #include "node.h"
+#include "card.h"
 
 class LinkedList {
     protected:
         Node* head; 
         Node* tail; 
         int count;
+//feature/mergeSort
         void split(LinkedList*& left, LinkedList*& right);
         void updateTailAndSize();   
         void mergeSort(LinkedList * topListPtr);
 
+           
+//main
     public:
         LinkedList(); 
         ~LinkedList(); 
-
         void push_back(Card* card); 
         void deleteNode(Node* toDelete); 
         int size() const; 
         void clear(); 
-        void mergeSort();
-
+        void mergeSort(); 
         Node* getHead() const; 
         Node* getTail() const; 
         void  mergeLists(LinkedList* listB);
