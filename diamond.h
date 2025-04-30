@@ -11,10 +11,10 @@ class Diamond : public Card {
     public:
         Diamond();
         Diamond(int val);
+        Diamond(const Diamond& toCopy);
         
         std::string getSuit() const override; 
-        void setSuit(const std::string& newSuit) override; 
-        
+        Card* clone() const override;
 
 };
 

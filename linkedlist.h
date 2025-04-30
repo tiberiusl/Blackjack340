@@ -5,7 +5,7 @@
 #include "card.h"
 
 class LinkedList {
-    private:
+    protected:
         Node* head; 
         Node* tail; 
         int count;
@@ -18,7 +18,7 @@ class LinkedList {
         LinkedList(); 
         ~LinkedList(); 
         void push_back(Card* card); 
-        void deleteNode(Card* card); 
+        void deleteNode(Node* toDelete); 
         int size() const; 
         void clear(); 
         void mergeSort(); 

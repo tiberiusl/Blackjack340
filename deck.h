@@ -10,7 +10,7 @@
 
 class Deck {
     private:
-        LinkedList cardDeck; 
+        LinkedList* deck; 
         
 
     public:

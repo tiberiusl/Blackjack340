@@ -15,13 +15,40 @@ LinkedList::~LinkedList() {
 }
 
 void LinkedList::push_back(Card* card) {
-
-//to implement
+    Node* newNode = new Node(card); //make new node with card
+    if (this->head == nullptr) { //if list empty
+        this->head = newNode;
+        this->tail = newNode; //make new node the only node in list
+     } else {
+        this->tail->setNext(newNode); //temp becomes new tail node
+        newNode->setPrev(tail); //tail becomes 2nd tail node
+        this->tail = newNode; //make tail point to new tail node (card)
+     }
+     
+     ++this->count;
 }
 
-void LinkedList::deleteNode(Card* card) {
-
-//to implement
+void LinkedList::deleteNode(Node* toDelete) {
+    if (this->size() == 1) { //if only one word
+       delete toDelete;
+       this->head = nullptr;
+       this->tail = nullptr;
+    } else if (toDelete == this->tail) { //if trying to delete tail word
+       this->tail = this->tail->getPrev(); //make second-tail node new tail node
+       this->tail->setNext(nullptr); //update tail's prev
+       delete toDelete; //delete given node
+    } else if (toDelete == this->head) { //if trying to delete head word
+       this->head = this->head->getNext(); //make second node new head node
+       this->head->setPrev(nullptr); //update head's prev
+       delete toDelete; //delete given node
+    } else {
+       toDelete->getPrev()->setNext(toDelete->getNext()); //set next of previous node of toDelete to next node from toDelete
+       toDelete->getNext()->setPrev(toDelete->getPrev()); //set prev of next node of to delete to prev node from toDelete
+       delete toDelete; //delete given node
+    }
+    if (this->count > 0) {
+       --this->count; //decrement count
+    }
 }
 
 int LinkedList::size() const {
@@ -31,9 +58,20 @@ int LinkedList::size() const {
 }
 
 void LinkedList::clear() {
-
-//to implement
-}
+    Node* current = this->head;
+    Node* temp;
+    
+    while (current != nullptr) { //iterate through list;
+       temp = current;
+       current = current->getNext(); //move pointer to next node
+       delete temp; //delete node
+    } //current should end as nullptr
+    
+    //deallocate private members
+    this->head = nullptr;
+    this->tail = nullptr;
+    this->count = 0;
+ }
 
 Node* LinkedList::getHead() const {
 
@@ -96,7 +134,7 @@ void LinkedList::mergeLists(LinkedList* listB) { //mergest two lists in order, k
         }
 
         // add node to merged list
-        if (newHead == nullptr) { // first node (head)
+        if (newHead == nullptr) { // this->head node (head)
             newHead = nextNode;
             newTail = nextNode;
             newHead->setPrev(nullptr);
@@ -209,3 +247,4 @@ void LinkedList::mergeSort(LinkedList* topListPtr) {
     delete left;
     delete right;
 }
+

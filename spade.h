@@ -9,9 +9,10 @@ class Spade : public Card {
     public:
         Spade();
         Spade(int val);
+        Spade(const Spade& toCopy);
         
-        std::string getSuit() const override; 
-        void setSuit(const std::string& newSuit) override; 
+        std::string getSuit() const override; // Get the suit of the card
+        Card* clone() const override;
 };
 
 #endif

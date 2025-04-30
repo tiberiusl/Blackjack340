@@ -20,10 +20,10 @@ void Participant::addCard(Card* card) {
 void Participant::showCards() const {
 
     // Show all cards in hand
-    cout << "Cards in hand: " << endl;
+    /*cout << "Cards in hand: " << endl;
     for (int i = 0; i < this->hand.size(); i++) {
         cout << this->hand[i]->getVal() << " of " << this->hand[i]->getSuit() << endl;
-    }
+    }*/
 }
 
 void Participant::clearHand() {
@@ -35,6 +35,6 @@ void Participant::clearHand() {
 int Participant::calculateHandValue() const {
 
 //to implement
-
+    return 1;
 }
 

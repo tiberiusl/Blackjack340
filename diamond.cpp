@@ -14,12 +14,17 @@ Diamond::Diamond(int val) {
     this->suit = "Diamond"; 
 }
 
-string Diamond::getSuit() const {
-
-    return this->suit; 
+Diamond::Diamond(const Diamond& toCopy) {
+    this->faceValue = toCopy.getVal();
+    this->name = toCopy.getName();
+    this->suit = "Diamond";
 }
 
-void Diamond::setSuit(const string& newSuit) {
+string Diamond::getSuit() const {
 
-    this->suit = newSuit; 
+    return this->suit; // Return the suit of the card
+}
+
+Card* Diamond::clone() const {
+    return new Diamond(*this);  // uses copy constructor
 }

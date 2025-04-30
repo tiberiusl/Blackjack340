@@ -5,21 +5,26 @@ using namespace std;
 Spade::Spade() {
 
     setVal(0);
-    this->suit = "spade"; 
+    this->suit = "Spade"; // Default suit
 }
 
 Spade::Spade(int val) {
 
     setVal(val);
-    this->suit = "spade"; 
+    this->suit = "Spade"; // Default suit
+}
+
+Spade::Spade(const Spade& toCopy) {
+    this->faceValue = toCopy.getVal();
+    this->name = toCopy.getName();
+    this->suit = "Spade";
 }
 
 string Spade::getSuit() const {
     
-    return this->suit; 
+    return this->suit; // Return the suit of the card
 }
 
-void Spade::setSuit(const string& newSuit) {
-    
-    this->suit = newSuit; 
+Card* Spade::clone() const {
+    return new Spade(*this);  // uses copy constructor
 }

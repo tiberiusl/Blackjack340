@@ -11,7 +11,13 @@ Heart::Heart() {
 Heart::Heart(int val) {
 
     setVal(val);
-    this->suit = "heart"; 
+    this->suit = "heart"; // Default suit
+}
+
+Heart::Heart(const Heart& toCopy) {
+    this->faceValue = toCopy.getVal();
+    this->name = toCopy.getName();
+    this->suit = "Heart";
 }
 
 string Heart::getSuit() const {
@@ -19,7 +25,6 @@ string Heart::getSuit() const {
     return this->suit; 
 }
 
-void Heart::setSuit(const string& newSuit) {
-    
-    this->suit = newSuit; 
+Card* Heart::clone() const {
+    return new Heart(*this);  // uses copy constructor
 }

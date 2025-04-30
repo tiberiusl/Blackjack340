@@ -9,6 +9,7 @@ using namespace std;
 
 int main() {
     //testing deck
+    cout << "\n\n\n\n\n";
     cout << "testing deck creation" << endl;
     Deck* newDeck = new Deck();
     cout << "Expected deck size is 0, actual size: " << newDeck->size() << endl;
