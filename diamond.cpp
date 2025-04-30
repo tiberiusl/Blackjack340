@@ -5,16 +5,21 @@ using namespace std;
 Diamond::Diamond() {
 
     setVal(0);
-    this->suit = "Diamond"; // Default suit
+    this->suit = "Diamond"; 
 }
 
 Diamond::Diamond(int val) {
 
     setVal(val);
-    this->suit = "Diamond"; // Default suit
+    this->suit = "Diamond"; 
 }
 
 string Diamond::getSuit() const {
 
-    return this->suit; // Return the suit of the card
+    return this->suit; 
+}
+
+void Diamond::setSuit(const string& newSuit) {
+
+    this->suit = newSuit; 
 }

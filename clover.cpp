@@ -5,16 +5,21 @@ using namespace std;
 Clover::Clover() {
 
     setVal(0);
-    this->suit = "clover"; // Default suit
+    this->suit = "clover"; 
 }
 
 Clover::Clover(int val) {
 
     setVal(val);
-    this->suit = "clover"; // Default suit
+    this->suit = "clover"; 
 }
 
 string Clover::getSuit() const {
 
-    return this->suit; // Return the suit of the card
+    return this->suit; 
+}
+
+void Clover::setSuit(const string& newSuit) {
+
+    this->suit = newSuit; 
 }

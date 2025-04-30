@@ -2,6 +2,7 @@
 #define DECK_H
 
 #include "linkedlist.h"
+#include "card.h"
 #include"diamond.h"
 #include"heart.h"
 #include"spade.h"
@@ -9,7 +10,7 @@
 
 class Deck {
     private:
-        LinkedList deck; 
+        LinkedList cardDeck; 
         
 
     public:

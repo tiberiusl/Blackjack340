@@ -11,7 +11,8 @@ class Clover : public Card {
         Clover();
         Clover(int val);
 
-        std::string getSuit() const override; // Get the suit of the card
+        std::string getSuit() const override; 
+        void setSuit(const std::string& newSuit) override; 
 
 
 };

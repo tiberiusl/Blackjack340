@@ -5,16 +5,21 @@ using namespace std;
 Spade::Spade() {
 
     setVal(0);
-    this->suit = "spade"; // Default suit
+    this->suit = "spade"; 
 }
 
 Spade::Spade(int val) {
 
     setVal(val);
-    this->suit = "spade"; // Default suit
+    this->suit = "spade"; 
 }
 
 string Spade::getSuit() const {
     
-    return this->suit; // Return the suit of the card
+    return this->suit; 
+}
+
+void Spade::setSuit(const string& newSuit) {
+    
+    this->suit = newSuit; 
 }
