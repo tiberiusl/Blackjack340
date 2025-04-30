@@ -22,5 +22,4 @@ class Node {
         void setNext(Node* newNext);
         void setPrev(Node* newPrev);
 };
-
 #endif

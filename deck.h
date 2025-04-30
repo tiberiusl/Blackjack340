@@ -9,7 +9,7 @@
 
 class Deck {
     private:
-        LinkedList deck; 
+        LinkedList* deck; 
         
 
     public:

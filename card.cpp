@@ -13,6 +13,11 @@ Card::Card(int val) {
     this->faceValue = val;
 }
 
+Card::Card(const Card& toCopy) {
+    this->faceValue = toCopy.getVal();
+    this->name = toCopy.getName();
+}
+
 void Card::setVal(int newVal) {
 
     this->faceValue = newVal;
@@ -22,6 +27,13 @@ void Card::setVal(int newVal) {
 int Card::getVal() const {
 
     return this->faceValue;
+}
+
+std::string Card::getName() const {
+    return this->name;
+}        
+void Card::setName(const std::string& newName) {
+    this->name = newName;
 }
 
 /*

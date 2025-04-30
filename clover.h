@@ -10,8 +10,10 @@ class Clover : public Card {
     public:
         Clover();
         Clover(int val);
+        Clover(const Clover& toCopy);
 
         std::string getSuit() const override; // Get the suit of the card
+        Card* clone() const override;
 
 
 };

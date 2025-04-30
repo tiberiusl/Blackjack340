@@ -4,23 +4,20 @@
 #include "node.h"
 
 class LinkedList {
-    private:
+    protected:
         Node* head; 
         Node* tail; 
         int count;
-feature/mergeSort
         void split(LinkedList*& left, LinkedList*& right);
         void updateTailAndSize();   
         void mergeSort(LinkedList * topListPtr);
 
-           
-main
     public:
         LinkedList(); 
         ~LinkedList(); 
 
         void push_back(Card* card); 
-        void deleteNode(Card* card); 
+        void deleteNode(Node* toDelete); 
         int size() const; 
         void clear(); 
         void mergeSort();

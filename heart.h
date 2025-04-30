@@ -9,8 +9,10 @@ class Heart : public Card {
     public:
         Heart();
         Heart(int val);
+        Heart(const Heart& toCopy);
         
         std::string getSuit() const override; // Get the suit of the card
+        Card* clone() const override;
         
 };
 
