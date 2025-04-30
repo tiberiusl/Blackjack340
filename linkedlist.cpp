@@ -86,8 +86,10 @@ Node* LinkedList::getTail() const {
 }
 
 void LinkedList::setHead(Node* newHead) {
-    this->head = newHead;
- }
+
+    this->head = newHead; // Set the head of the list
+
+}
  
  void LinkedList::setTail(Node* newTail) {
     this->tail = newTail;
@@ -96,6 +98,18 @@ void LinkedList::setHead(Node* newHead) {
  void LinkedList::setSize(int newSize) {
     this->count = newSize;
  }
+
+void LinkedList::setTail(Node* newTail) {
+
+    this->tail = newTail; // Set the tail of the list
+
+}
+
+void LinkedList::setSize(int newSize) {
+
+    this->count = newSize; // Set the size of the list
+
+}
 
 void LinkedList::mergeLists(LinkedList* listB) { //mergest two lists in order, keeps duplicates
     Node* currentA = this->getHead();
