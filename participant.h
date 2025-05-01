@@ -5,6 +5,7 @@
 
 #include "LinkedList.h"
 #include "card.h"
+#include "deck.h"
 #include <vector>
 
 class Participant {
@@ -21,7 +22,7 @@ class Participant {
         void clearHand(); 
         int calculateHandValue() const; 
         
-        virtual void takeTurn() = 0; 
+        virtual void takeTurn(Deck& myDeck) = 0; 
 
 };
 

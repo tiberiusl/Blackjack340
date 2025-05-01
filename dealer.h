@@ -8,7 +8,7 @@ class Dealer : public Participant {
         Dealer(); 
         ~Dealer(); 
 
-        void takeTurn(); 
+        void takeTurn(Deck& myDeck); 
 
 };
 

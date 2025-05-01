@@ -10,8 +10,8 @@ Player::~Player() {
 // to implement
 }
 
-void Player::takeTurn() {
-
+void Player::takeTurn(Deck& myDeck) {
+    
 // to implement
 }
 

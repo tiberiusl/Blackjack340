@@ -2,6 +2,7 @@
 #define PLAYER_H
 
 #include "participant.h"
+#include "deck.h"
 #include <iostream>
 
 class Player : public Participant {
@@ -10,7 +11,7 @@ class Player : public Participant {
         Player(); 
         ~Player(); 
 
-        void takeTurn() override; 
+        void takeTurn(Deck& myDeck) override; 
         void showCards() const; 
         int calculateHandValue() const; 
 

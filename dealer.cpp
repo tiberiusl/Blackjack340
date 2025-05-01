@@ -10,7 +10,7 @@ Dealer::~Dealer() {
 //to implement
 }
 
-void Dealer::takeTurn() {
+void Dealer::takeTurn(Deck& myDeck) {
 
 //to implement
 }
