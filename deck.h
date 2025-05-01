@@ -17,7 +17,7 @@ class Deck {
         Deck(); 
         ~Deck(); 
 
-        void takeTurn();
+        void fill();
         void shuffle(); 
         Card* pop_back();
         int size() const; 

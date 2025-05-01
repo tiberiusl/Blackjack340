@@ -11,7 +11,7 @@ Deck::~Deck() {
 //to implement    
 }
 
-void Deck::takeTurn() { //populates a linkedlist with 52 cards
+void Deck::fill() { //populates a linkedlist with 52 cards
     std::vector<std::string> values = {"A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"};
     std::vector<int> scores = {11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10};
 

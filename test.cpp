@@ -13,7 +13,7 @@ int main() {
     cout << "testing deck creation" << endl;
     Deck* newDeck = new Deck();
     cout << "Expected deck size is 0, actual size: " << newDeck->size() << endl;
-    newDeck->takeTurn();
+    newDeck->fill();
     cout << "takeTurn() used, expected size is now 52, actual size: " << newDeck->size() << endl;
     return 0;
 }
