@@ -13,7 +13,7 @@ Deck::~Deck() {
 }
 
 void Deck::fill() { //populates a linkedlist with 52 cards
-    std::vector<std::string> values = {"A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"};
+    std::vector<std::string> values = {"Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King"};
     std::vector<int> scores = {11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10};
 
     //Aces have value 11
@@ -69,7 +69,7 @@ void Deck::printDeck() const {
     
     while (current != nullptr) {
         Card* card = current->getData();
-        std::cout << count << ". " << card->getName() << card->getSuit() << " ";
+        std::cout << count << ". " << card->getName() << " of " << card->getSuit() << " ";
         if (count % 13 == 0) std::cout << std::endl;  
         current = current->getNext();
         count++;
