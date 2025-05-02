@@ -1,5 +1,5 @@
 #ifndef TEST_H
-#define TEST.H
+#define TEST_H
 
 #include <iostream>
 #include "linkedlist.h"

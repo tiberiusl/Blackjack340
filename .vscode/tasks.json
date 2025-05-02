@@ -22,6 +22,7 @@
           "diamond.cpp",
           "dealer.cpp",
           "clover.cpp",
+          "main.cpp",
         ],
         "options": {
           "cwd": "${workspaceFolder}"
