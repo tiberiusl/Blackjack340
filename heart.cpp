@@ -12,7 +12,7 @@ Heart::Heart() {
 Heart::Heart(int val) {
 
     setVal(val);
-    this->suit = "heart"; // Default suit
+    this->suit = "Heart"; // Default suit
 }
 
 Heart::Heart(const Heart& toCopy) {
