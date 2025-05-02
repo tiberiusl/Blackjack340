@@ -5,8 +5,8 @@
 
 class Dealer : public Participant {
     public:
-        Dealer(); 
-        ~Dealer(); 
+        //Dealer(); 
+        //~Dealer() override; 
 
         void takeTurn(Deck& myDeck); 
 

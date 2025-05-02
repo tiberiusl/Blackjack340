@@ -2,14 +2,12 @@
 #define PLAYER_H
 
 #include "participant.h"
-#include "deck.h"
-#include <iostream>
 
 class Player : public Participant {
 
     public:
-        Player(); 
-        ~Player(); 
+        //Player(); 
+        //~Player() override; 
 
         void takeTurn(Deck& myDeck) override;
 };
