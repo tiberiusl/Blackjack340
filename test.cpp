@@ -50,4 +50,10 @@ void Test::Testing() {
     Player* newPlayer = new Player;
     Dealer* newDealer = new Dealer;
 
+    newPlayer->showCards();
+    newDealer->showCards();
+
+    delete newPlayer;
+    delete newDealer;
+
 }

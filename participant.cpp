@@ -19,8 +19,16 @@ void Participant::addCard(Card* card) {
 
 void Participant::showCards() const {
     cout << "Showing cards in hand: " << endl;
-    Node* current = this->hand->getHead();
 
+    //exit early if hand is empty
+    if (this->hand->size() == 0) {
+        cout << "No cards in hand!" << endl;
+        return;
+    }
+
+    //traverse through linkedlist
+    //calling printCard on each Card* in list
+    Node* current = this->hand->getHead();
     while (current) {
         Card* currentCard = current->getData();
         currentCard->printCard();
