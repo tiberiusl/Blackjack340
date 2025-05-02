@@ -11,7 +11,7 @@ class Player : public Participant {
         Player(); 
         ~Player(); 
 
-        void takeTurn(Deck& myDeck) override; 
+        void takeTurn(Deck& myDeck) override;
 };
 
 

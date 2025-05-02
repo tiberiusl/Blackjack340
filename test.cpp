@@ -1,15 +1,7 @@
-#include <iostream>
-#include "linkedlist.h"
-#include "spade.h"
-#include "clover.h"
-#include "diamond.h"
-#include "heart.h"
-#include "deck.h"
-#include "player.h"
-#include "dealer.h"
+#include "test.h"
 using namespace std;
 
-int main() {
+void Test::Testing() {
     //testing deck
     cout << "\n\n";
     cout << "testing deck creation" << endl;
@@ -54,6 +46,8 @@ int main() {
     newDiamond->printCard();
     newSpade->printCard();
 
-    
-    return 0;
+    //testing player and dealer
+    Player* newPlayer = new Player;
+    Dealer* newDealer = new Dealer;
+
 }
