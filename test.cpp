@@ -30,8 +30,26 @@ int main() {
     Card* newSpade = new Spade;
 
     newHeart->printCard();
+    newClover->printCard();
+    newDiamond->printCard();
+    newSpade->printCard();
 
+    newHeart->setVal(10);
+    newHeart->setName("10");
 
+    newClover->setVal(10);
+    newClover->setName("Jack");
+
+    newDiamond->setVal(10);
+    newDiamond->setName("Queen");
+
+    newSpade->setVal(10);
+    newSpade->setName("King");
+
+    newHeart->printCard();
+    newClover->printCard();
+    newDiamond->printCard();
+    newSpade->printCard();
 
     return 0;
 }
