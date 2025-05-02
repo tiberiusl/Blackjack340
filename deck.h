@@ -21,6 +21,7 @@ class Deck {
         void shuffle(); 
         Card* pop_back();
         int size() const; 
+        void printDeck() const; //created for testing purposes
            
 };
 

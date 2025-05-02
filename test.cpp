@@ -15,5 +15,11 @@ int main() {
     cout << "Expected deck size is 0, actual size: " << newDeck->size() << endl;
     newDeck->fill();
     cout << "takeTurn() used, expected size is now 52, actual size: " << newDeck->size() << endl;
+
+    //testing suite assignment
+    cout << "\nPrinting all cards in deck:\n";
+    newDeck->printDeck();
+    delete newDeck;  // cleanup
+
     return 0;
 }
