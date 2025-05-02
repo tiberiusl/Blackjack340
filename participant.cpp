@@ -61,6 +61,7 @@ int Participant::calculateHandValue() const {
         if (currentCard->getName() == "Ace") {
             ++numAces;
         }
+        current = current->getNext();
     }
 
     while (handValue > 21 && numAces > 0) {

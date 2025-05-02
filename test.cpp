@@ -29,8 +29,8 @@ void Test::Testing() {
     newDiamond->printCard();
     newSpade->printCard();
 
-    newHeart->setVal(10);
-    newHeart->setName("10");
+    newHeart->setVal(7);
+    newHeart->setName("7");
 
     newClover->setVal(10);
     newClover->setName("Jack");
@@ -52,6 +52,26 @@ void Test::Testing() {
 
     newPlayer->showCards();
     newDealer->showCards();
+
+    cout << "\n\n";
+
+    cout << newPlayer->calculateHandValue();
+    cout << endl;
+    cout << newDealer->calculateHandValue();
+    cout << endl;
+
+    newPlayer->addCard(newHeart);
+    newPlayer->addCard(newHeart);
+    newPlayer->addCard(newHeart);
+    newPlayer->addCard(newHeart);
+
+    newDealer->addCard(newDiamond);
+    newDealer->addCard(newDiamond);
+
+    cout << newPlayer->calculateHandValue();
+    cout << endl;
+    cout << newDealer->calculateHandValue();
+    cout << endl;
 
     delete newPlayer;
     delete newDealer;
