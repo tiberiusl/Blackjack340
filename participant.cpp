@@ -37,8 +37,36 @@ void Participant::showCards() const {
 }
 
 int Participant::calculateHandValue() const {
+    //traverse through list
+    //sum the int value of all Card*
+    //if ace encountered, increment numAces
+    //if total value > 21, decrement by 10
+    //until total value < 21 or numAces = 0
 
-//to implement
-    return 1;
+    int handValue = 0;
+    int numAces = 0;
+    
+    //if hand empty, return 0
+    if (this->hand->size() == 0) {
+        return handValue;
+    }
+
+    //start traversal
+    Node* current = this->hand->getHead();
+    while (current) {
+        //add Card* value to handValue
+        Card* currentCard = current->getData();
+        handValue += currentCard->getVal();
+        //count aces
+        if (currentCard->getName() == "Ace") {
+            ++numAces;
+        }
+    }
+
+    while (handValue > 21 && numAces > 0) {
+        handValue -= 10;
+        --numAces;
+    }
+    return handValue;
 }
 
