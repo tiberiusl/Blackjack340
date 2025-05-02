@@ -12,8 +12,6 @@ class Player : public Participant {
         ~Player(); 
 
         void takeTurn(Deck& myDeck) override; 
-        int calculateHandValue() const; 
-
 };
 
 
