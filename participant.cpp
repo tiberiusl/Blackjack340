@@ -9,7 +9,7 @@ Participant::Participant() {
 
 Participant::~Participant() {
     // Destructor implementation
-    clearHand(); // Clear the hand when the participant is destroyed
+    this->hand->clear(); // Clear the hand when the participant is destroyed
 }
 
 void Participant::addCard(Card* card) {
@@ -24,12 +24,6 @@ void Participant::showCards() const {
     for (int i = 0; i < this->hand.size(); i++) {
         cout << this->hand[i]->getVal() << " of " << this->hand[i]->getSuit() << endl;
     }*/
-}
-
-void Participant::clearHand() {
-
-//to implement
-
 }
 
 int Participant::calculateHandValue() const {

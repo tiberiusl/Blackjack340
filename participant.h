@@ -18,7 +18,6 @@ class Participant {
 
         void addCard(Card* card); 
         void showCards() const; 
-        void clearHand(); 
         int calculateHandValue() const; 
         
         virtual void takeTurn(Deck& myDeck) = 0; 
