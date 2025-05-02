@@ -1,6 +1,7 @@
 #include "deck.h"
 #include "linkedlist.h"
 #include <vector>
+#include <iostream>
 
 Deck::Deck() {
     this->deck = new LinkedList;
@@ -8,7 +9,7 @@ Deck::Deck() {
 
 Deck::~Deck() {
     this->deck->clear();
-//to implement    
+    
 }
 
 void Deck::takeTurn() { //populates a linkedlist with 52 cards
@@ -61,7 +62,20 @@ Card* Deck::pop_back() {
     return copy;
 }
 
-
+//for testing purposes only
+void Deck::printDeck() const {
+    Node* current = this->deck->getHead();
+    int count = 1;
+    
+    while (current != nullptr) {
+        Card* card = current->getData();
+        std::cout << count << ". " << card->getName() << card->getSuit() << " ";
+        if (count % 13 == 0) std::cout << std::endl;  
+        current = current->getNext();
+        count++;
+    }
+    std::cout << std::endl;
+}
 
 int Deck::size() const {
     return this->deck->size(); 
