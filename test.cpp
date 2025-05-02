@@ -29,6 +29,7 @@ int main() {
     Card* newDiamond = new Diamond;
     Card* newSpade = new Spade;
 
+    //testing printCard() + setters
     newHeart->printCard();
     newClover->printCard();
     newDiamond->printCard();

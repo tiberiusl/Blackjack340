@@ -6,11 +6,10 @@
 #include "LinkedList.h"
 #include "card.h"
 #include "deck.h"
-#include <vector>
 
 class Participant {
     protected:
-        LinkedList hand; 
+        LinkedList* hand; 
         
 
     public:

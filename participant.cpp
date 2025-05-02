@@ -4,7 +4,7 @@
 using namespace std;
 
 Participant::Participant() {
-    // Constructor implementation
+    this->hand = new LinkedList;
 }
 
 Participant::~Participant() {
@@ -14,7 +14,7 @@ Participant::~Participant() {
 
 void Participant::addCard(Card* card) {
 
-    this->hand.push_back(card); // Add a card to the hand
+    this->hand->push_back(card); // Add a card to the hand
 }
 
 void Participant::showCards() const {
