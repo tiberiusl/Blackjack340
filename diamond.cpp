@@ -1,4 +1,6 @@
 #include "diamond.h"
+#include <iostream>
+
 
 using namespace std;
 
@@ -23,6 +25,10 @@ Diamond::Diamond(const Diamond& toCopy) {
 string Diamond::getSuit() const {
 
     return this->suit; // Return the suit of the card
+}
+
+void Diamond::printCard() const {
+    cout << this->getName() << " of " << this->getSuit() << endl;
 }
 
 Card* Diamond::clone() const {

@@ -28,6 +28,7 @@ class Card {
 
         virtual std::string getSuit() const = 0; // pure virtual function
         virtual Card* clone() const = 0;
+        virtual void printCard() const = 0; //prints name of card + suite of card
         //virtual void setSuit(const std::string& newSuit) = 0; // pure virtual function 
         
 

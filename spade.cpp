@@ -1,4 +1,6 @@
 #include "spade.h"
+#include <iostream>
+
 
 using namespace std;
 
@@ -23,6 +25,10 @@ Spade::Spade(const Spade& toCopy) {
 string Spade::getSuit() const {
     
     return this->suit; // Return the suit of the card
+}
+
+void Spade::printCard() const {
+    cout << this->getName() << " of " << this->getSuit() << endl;
 }
 
 Card* Spade::clone() const {

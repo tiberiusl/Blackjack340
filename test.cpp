@@ -9,17 +9,29 @@ using namespace std;
 
 int main() {
     //testing deck
-    cout << "\n\n\n\n\n";
+    cout << "\n\n";
     cout << "testing deck creation" << endl;
     Deck* newDeck = new Deck();
     cout << "Expected deck size is 0, actual size: " << newDeck->size() << endl;
+    cout << "\ntesting fill() method to fill deck with 52 cards" << endl;
     newDeck->fill();
-    cout << "takeTurn() used, expected size is now 52, actual size: " << newDeck->size() << endl;
+    cout << "\ntakeTurn() used, expected size is now 52, actual size: " << newDeck->size() << endl;
 
     //testing suite assignment
+    cout << "\n\n";
     cout << "\nPrinting all cards in deck:\n";
     newDeck->printDeck();
     delete newDeck;  // cleanup
+
+    //testing Card constructors 
+    Card* newHeart = new Heart;
+    Card* newClover = new Clover;
+    Card* newDiamond = new Diamond;
+    Card* newSpade = new Spade;
+
+    newHeart->printCard();
+
+
 
     return 0;
 }

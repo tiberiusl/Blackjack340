@@ -1,4 +1,6 @@
 #include "clover.h"
+#include <iostream>
+
 
 using namespace std;
 
@@ -23,6 +25,10 @@ Clover::Clover(const Clover& toCopy) {
 string Clover::getSuit() const {
 
     return this->suit; // Return the suit of the card
+}
+
+void Clover::printCard() const {
+    cout << this->getName() << " of " << this->getSuit() << endl;
 }
 
 Card* Clover::clone() const {

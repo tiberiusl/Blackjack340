@@ -11,7 +11,7 @@
             "cwd": "${workspaceFolder}",
             "environment": [],
             "console": "externalTerminal",
-            "preLaunchTask": "Build All CPP Files with cl.exe"
+            "preLaunchTask": "Build All with cl.exe"
         },
         {
             "name": "C/C++: clang-cl.exe build and debug active file",

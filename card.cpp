@@ -1,16 +1,19 @@
 //implementation file for the card abstract class
 
 #include "card.h"
+#include <iostream>
 using namespace std;
 
 Card::Card() {
 
     this->faceValue = 0;
+    this->name = "";
 } 
 
 Card::Card(int val) {
 
     this->faceValue = val;
+    this->name = "";
 }
 
 Card::Card(const Card& toCopy) {

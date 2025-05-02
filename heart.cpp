@@ -1,4 +1,5 @@
 #include "heart.h"
+#include <iostream>
 
 using namespace std;
 
@@ -23,6 +24,10 @@ Heart::Heart(const Heart& toCopy) {
 string Heart::getSuit() const {
     
     return this->suit; 
+}
+
+void Heart::printCard() const {
+    cout << this->getName() << " of " << this->getSuit() << endl;
 }
 
 Card* Heart::clone() const {

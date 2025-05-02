@@ -15,6 +15,7 @@ class Diamond : public Card {
         
         std::string getSuit() const override; 
         Card* clone() const override;
+        virtual void printCard() const override;
 
 };
 
