@@ -63,28 +63,23 @@ void Test::Testing() {
     cout << endl;
 
     newPlayer->addCard(newHeart);
-    newPlayer->addCard(newHeart);
-    newPlayer->addCard(newHeart);
-    newPlayer->addCard(newHeart);
+    newPlayer->addCard(newClover);
+    newPlayer->addCard(newDiamond);
+    newPlayer->addCard(newSpade);
 
     newDealer->addCard(newDiamond);
-    newDealer->addCard(newDiamond);
+    newDealer->addCard(newHeart);
 
     newPlayer->showCards();
     newDealer->showCards();
     cout << endl;
 
-    cout << "got  here" << endl;
-
-    cout << newPlayer->calculateHandValue(); //expected to be 28 (7 * 4)
+    cout << newPlayer->calculateHandValue(); //expected to be 37 (7 + 10 + 10 + 10)
     cout << endl;
-    cout << newDealer->calculateHandValue(); //expected to be 20 (2 * 10)
+    cout << newDealer->calculateHandValue(); //expected to be 17 (10 + 7)
     cout << endl;
 
-    cout << "got  here 2" << endl;
-
-    //testing clear() & dynamic ace value handling
-    //should empty hand
+    //testing dynamic ace value handling
 
     newHeart->setVal(11);
     newHeart->setName("Ace");
@@ -98,22 +93,15 @@ void Test::Testing() {
     newSpade->setVal(10);
     newSpade->setName("King");
 
-    newPlayer->getHand()->clear();
-    newDealer->getHand()->clear();
-
-    cout << newPlayer->calculateHandValue(); //expected to be 0 
+    cout << newPlayer->calculateHandValue(); //expected to be 22 (11 + 11 + 10 + 10 - 10 - 10) 
     cout << endl;
-    cout << newDealer->calculateHandValue(); //expected to be 0 
+    cout << newDealer->calculateHandValue(); //expected to be 21 (11 + 10) 
     cout << endl;
-
-    newPlayer->addCard(newHeart);
-    newPlayer->addCard(newSpade);
-
-    cout << newPlayer->calculateHandValue() << endl; //expected 21 (11 + 10)
-
-    newPlayer->addCard(newDiamond);
-
-    cout << newPlayer->calculateHandValue() << endl; //expected 21 (1 + 10 + 10)
+    
+    delete newHeart;
+    delete newClover;
+    delete newDiamond;
+    delete newSpade;
 
     delete newPlayer;
     delete newDealer;

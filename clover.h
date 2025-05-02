@@ -11,7 +11,7 @@ class Clover : public Card {
         Clover();
         Clover(int val);
         Clover(const Clover& toCopy);
-        ~Clover() override;
+        ~Clover() override = default;
 
         std::string getSuit() const override; // Get the suit of the card
         Card* clone() const override;
