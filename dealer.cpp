@@ -1,12 +1,12 @@
 #include "dealer.h"
 
 Dealer::Dealer() {
-
-//to implement
+    this->hand = new LinkedList;
+    //to implement
 }
 
 Dealer::~Dealer() {
-
+    this->hand->clear();
 //to implement
 }
 

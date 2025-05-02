@@ -5,6 +5,8 @@
 #include "diamond.h"
 #include "heart.h"
 #include "deck.h"
+#include "player.h"
+#include "dealer.h"
 using namespace std;
 
 int main() {
@@ -52,5 +54,6 @@ int main() {
     newDiamond->printCard();
     newSpade->printCard();
 
+    
     return 0;
 }

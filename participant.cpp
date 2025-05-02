@@ -18,12 +18,14 @@ void Participant::addCard(Card* card) {
 }
 
 void Participant::showCards() const {
+    cout << "Showing cards in hand: " << endl;
+    Node* current = this->hand->getHead();
 
-    // Show all cards in hand
-    /*cout << "Cards in hand: " << endl;
-    for (int i = 0; i < this->hand.size(); i++) {
-        cout << this->hand[i]->getVal() << " of " << this->hand[i]->getSuit() << endl;
-    }*/
+    while (current) {
+        Card* currentCard = current->getData();
+        currentCard->printCard();
+        current = current->getNext();
+    }
 }
 
 int Participant::calculateHandValue() const {

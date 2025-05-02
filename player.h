@@ -12,7 +12,6 @@ class Player : public Participant {
         ~Player(); 
 
         void takeTurn(Deck& myDeck) override; 
-        void showCards() const; 
         int calculateHandValue() const; 
 
 };
