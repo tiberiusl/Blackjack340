@@ -71,3 +71,7 @@ int Participant::calculateHandValue() const {
     return handValue;
 }
 
+LinkedList* Participant::getHand() const {
+    return this->hand;
+}
+

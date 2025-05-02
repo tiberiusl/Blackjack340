@@ -10,6 +10,7 @@ class Spade : public Card {
         Spade();
         Spade(int val);
         Spade(const Spade& toCopy);
+        ~Spade() override;
         
         std::string getSuit() const override; // Get the suit of the card
         Card* clone() const override;

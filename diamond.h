@@ -12,6 +12,7 @@ class Diamond : public Card {
         Diamond();
         Diamond(int val);
         Diamond(const Diamond& toCopy);
+        ~Diamond() override;
         
         std::string getSuit() const override; 
         Card* clone() const override;

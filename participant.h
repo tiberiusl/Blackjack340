@@ -16,9 +16,10 @@ class Participant {
         Participant(); 
         virtual ~Participant(); 
 
-        void addCard(Card* card); 
+        void addCard(Card* card);
         void showCards() const; 
         int calculateHandValue() const; 
+        LinkedList* getHand() const;
         
         virtual void takeTurn(Deck& myDeck) = 0; 
 
