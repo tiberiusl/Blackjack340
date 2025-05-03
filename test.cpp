@@ -25,11 +25,14 @@ void Test::Testing() {
 
     //testing printCard() + setters
 
+    //all cards should have empty names
+    //and print their corresponding suite names
     newHeart->printCard();
     newClover->printCard();
     newDiamond->printCard();
     newSpade->printCard();
 
+    //changing values and names of cards
     newHeart->setVal(7);
     newHeart->setName("7");
 
@@ -42,6 +45,8 @@ void Test::Testing() {
     newSpade->setVal(10);
     newSpade->setName("King");
 
+    //cards should now print "name of suite"
+    //value of card is stored and not printed
     newHeart->printCard();
     newClover->printCard();
     newDiamond->printCard();
@@ -52,16 +57,21 @@ void Test::Testing() {
     Player* newPlayer = new Player;
     Dealer* newDealer = new Dealer;
 
+    //testing showCards() on empty hand
     newPlayer->showCards();
     newDealer->showCards();
 
     cout << "\n\n";
 
+    //testing calculateHandValue() on empty hand
+    //should be 0, which prints special dialogue 
     cout << newPlayer->calculateHandValue();
     cout << endl;
     cout << newDealer->calculateHandValue();
     cout << endl;
 
+    //testing addCard()
+    //simply calls LinkedList's pushback() with given Card*
     newPlayer->addCard(newHeart);
     newPlayer->addCard(newClover);
     newPlayer->addCard(newDiamond);
@@ -70,6 +80,8 @@ void Test::Testing() {
     newDealer->addCard(newDiamond);
     newDealer->addCard(newHeart);
 
+    //show cards should run printCard() of
+    //all Card* in LinkedList, one per new line
     newPlayer->showCards();
     newDealer->showCards();
     cout << endl;
