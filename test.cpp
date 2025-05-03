@@ -2,7 +2,7 @@
 using namespace std;
 
 void Test::Testing() {
-    //testing deck
+    cout << "testing deck";
     cout << "\n\n";
     cout << "testing deck creation" << endl;
     Deck* newDeck = new Deck();
@@ -11,7 +11,7 @@ void Test::Testing() {
     newDeck->fill();
     cout << "\ntakeTurn() used, expected size is now 52, actual size: " << newDeck->size() << endl;
 
-    //testing suite assignment
+    cout << "testing suite assignment";
     cout << "\n\n";
     cout << "\nPrinting all cards in deck:\n";
     newDeck->printDeck();
@@ -23,16 +23,16 @@ void Test::Testing() {
     Card* newDiamond = new Diamond;
     Card* newSpade = new Spade;
 
-    //testing printCard() + setters
+    cout << "testing printCard() + setters" << endl;
+    cout << "all cards should have empty names" << endl;
+    cout << "and print their corresponding suite names" << endl;
 
-    //all cards should have empty names
-    //and print their corresponding suite names
     newHeart->printCard();
     newClover->printCard();
     newDiamond->printCard();
     newSpade->printCard();
 
-    //changing values and names of cards
+    cout << "changing values and names of cards" << endl;
     newHeart->setVal(7);
     newHeart->setName("7");
 
@@ -45,53 +45,69 @@ void Test::Testing() {
     newSpade->setVal(10);
     newSpade->setName("King");
 
-    //cards should now print "name of suite"
-    //value of card is stored and not printed
+    cout << "cards should now print \"name of suite\"" << endl;
+    cout << "value of card is stored and not printed" << endl;
     newHeart->printCard();
     newClover->printCard();
     newDiamond->printCard();
     newSpade->printCard();
-    
+    cout << endl;
 
-    //testing player and dealer
+    cout << "testing player and dealer" << endl;
+    cout << "testing constructors" << endl;
     Player* newPlayer = new Player;
     Dealer* newDealer = new Dealer;
 
-    //testing showCards() on empty hand
+    cout << "If you're seeing this, we didn't crash" << endl;
+    cout << "Constructors probably worked" << endl;
+
+    cout << "testing showCards() on empty hand" << endl;
     newPlayer->showCards();
     newDealer->showCards();
 
     cout << "\n\n";
 
-    //testing calculateHandValue() on empty hand
-    //should be 0, which prints special dialogue 
+    cout << "testing calculateHandValue() on empty hand" << endl;
+    cout << "should be 0, which prints special dialogue" << endl; 
     cout << newPlayer->calculateHandValue();
     cout << endl;
     cout << newDealer->calculateHandValue();
     cout << endl;
 
-    //testing addCard()
-    //simply calls LinkedList's pushback() with given Card*
+    cout << "testing addCard()" << endl;
+    cout << "simply calls LinkedList's pushback() with given Card*" << endl;
+    cout << "adding cards to player" << endl;
     newPlayer->addCard(newHeart);
     newPlayer->addCard(newClover);
     newPlayer->addCard(newDiamond);
     newPlayer->addCard(newSpade);
 
+    cout << "adding cards to dealer" << endl;
     newDealer->addCard(newDiamond);
     newDealer->addCard(newHeart);
 
-    //show cards should run printCard() of
-    //all Card* in LinkedList, one per new line
+    cout << "Testing showCards() on non-empty hand/list" << endl;
+    cout << "show cards should run printCard() of" << endl;
+    cout << "all Card* in LinkedList, one per new line" << endl;
+
+    cout << "showing player's cards" << endl;
     newPlayer->showCards();
+    cout << "showing dealer's cards" << endl;
     newDealer->showCards();
     cout << endl;
 
+    cout << "Testing calculateHandValue() with newly added cards" << endl;
+    cout << "Calculating player's hand, expected to be 37 (7 + 10 + 10 + 10)" << endl;
     cout << newPlayer->calculateHandValue(); //expected to be 37 (7 + 10 + 10 + 10)
     cout << endl;
+
+    cout << "Testing calculateHandValue() with newly added cards" << endl;
+    cout << "Calculating dealer's hand, expected to be 17 (10 + 7)" << endl;
     cout << newDealer->calculateHandValue(); //expected to be 17 (10 + 7)
     cout << endl;
 
-    //testing dynamic ace value handling
+    cout << "testing dynamic ace value handling" << endl;
+    cout << "changing values of cards" << endl;
 
     newHeart->setVal(11);
     newHeart->setName("Ace");
@@ -105,8 +121,20 @@ void Test::Testing() {
     newSpade->setVal(10);
     newSpade->setName("King");
 
+    cout << "new value of cards" << endl;
+    newHeart->printCard();
+    newClover->printCard();
+    newDiamond->printCard();
+    newSpade->printCard();
+
+    cout << "recalculating value of hands" << endl;
+    cout << "calculating value of player's hand, expected to be 22 (11 + 11 + 10 + 10 - 10 - 10)" << endl;
+    cout << "(2 Aces at 11 makes 22, total of 42 means player is over 21)" << endl;
+    cout << "(calculateHandValue() should subtract 2 * (-10) from total value)" << endl;
+    cout << "(essentially changing the 2 Aces value to 1 each)" << endl;
     cout << newPlayer->calculateHandValue(); //expected to be 22 (11 + 11 + 10 + 10 - 10 - 10) 
     cout << endl;
+    cout << "calculating value of dealer's hand, expected to be 21 (11 + 10)" << endl;
     cout << newDealer->calculateHandValue(); //expected to be 21 (11 + 10) 
     cout << endl;
     
