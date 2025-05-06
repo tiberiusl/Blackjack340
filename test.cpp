@@ -1,21 +1,24 @@
 #include "test.h"
 using namespace std;
 
-void Test::Testing() {
-    cout << "testing deck";
-    cout << "\n\n";
+void Test::TestDeck() {
+
+    cout << "testing deck" << endl;
     cout << "testing deck creation" << endl;
     Deck* newDeck = new Deck();
     cout << "Expected deck size is 0, actual size: " << newDeck->size() << endl;
     cout << "\ntesting fill() method to fill deck with 52 cards" << endl;
     newDeck->fill();
-    cout << "\ntakeTurn() used, expected size is now 52, actual size: " << newDeck->size() << endl;
+    cout << "\fill() used, expected size is now 52, actual size: " << newDeck->size() << endl;
 
     cout << "testing suite assignment";
     cout << "\n\n";
     cout << "\nPrinting all cards in deck:\n";
     newDeck->printDeck();
     delete newDeck;  // cleanup
+
+}
+void Test::TestCard() {
 
     //testing Card constructors 
     Card* newHeart = new Heart;
@@ -53,6 +56,14 @@ void Test::Testing() {
     newSpade->printCard();
     cout << endl;
 
+    delete newHeart;
+    delete newClover;
+    delete newDiamond;
+    delete newSpade;
+
+}
+void Test::TestParticipant() {
+
     cout << "testing player and dealer" << endl;
     cout << "testing constructors" << endl;
     Player* newPlayer = new Player;
@@ -73,6 +84,24 @@ void Test::Testing() {
     cout << endl;
     cout << newDealer->calculateHandValue();
     cout << endl;
+
+    Card* newHeart = new Heart;
+    Card* newClover = new Clover;
+    Card* newDiamond = new Diamond;
+    Card* newSpade = new Spade;
+
+    //initialize cards
+    newHeart->setVal(7);
+    newHeart->setName("7");
+
+    newClover->setVal(10);
+    newClover->setName("Jack");
+
+    newDiamond->setVal(10);
+    newDiamond->setName("Queen");
+
+    newSpade->setVal(10);
+    newSpade->setName("King");
 
     cout << "testing addCard()" << endl;
     cout << "simply calls LinkedList's pushback() with given Card*" << endl;
@@ -137,7 +166,7 @@ void Test::Testing() {
     cout << "calculating value of dealer's hand, expected to be 21 (11 + 10)" << endl;
     cout << newDealer->calculateHandValue(); //expected to be 21 (11 + 10) 
     cout << endl;
-    
+
     delete newHeart;
     delete newClover;
     delete newDiamond;
@@ -146,4 +175,11 @@ void Test::Testing() {
     delete newPlayer;
     delete newDealer;
 
+}
+
+
+void Test::TestAll() {
+    TestDeck();
+    TestCard();
+    TestParticipant();
 }

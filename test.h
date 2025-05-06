@@ -13,7 +13,10 @@
 
 class Test{
     public:
-        void Testing();
+        void TestAll();
+        void TestDeck();
+        void TestCard();
+        void TestParticipant();
 };
 
 #endif
