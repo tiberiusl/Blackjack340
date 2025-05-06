@@ -2,6 +2,8 @@
 #define PLAYER_H
 
 #include "participant.h"
+#include <iostream>
+
 
 class Player : public Participant {
 
