@@ -177,9 +177,71 @@ void Test::TestParticipant() {
 
 }
 
+void Test::TestShuffle() {
+    cout << "\n=== Entering TestShuffle() ===" << endl;
+
+    // Create and fill the deck
+    Deck* deck = new Deck();
+    deck->fill();
+    
+    cout << "\nDeck before shuffling:" << endl;
+    deck->printDeck();
+
+    // Shuffle the deck
+    deck->shuffle();
+    
+    cout << "\nDeck after shuffling 1 time:" << endl;
+    deck->printDeck();
+
+    for (int i = 0; i < 7; ++i) {
+
+        deck->shuffle();
+    }
+
+    cout << "\nDeck after shuffling 7 times:" << endl;
+    deck->printDeck();
+    
+    // Verify deck count remains 52
+    if (deck->size() == 52)
+        cout << "\nTestShuffle passed: deck still has 52 cards after shuffling." << endl;
+    else
+        cout << "\nTestShuffle failed: deck count changed after shuffling." << endl;
+
+    delete deck;
+}
+
 
 void Test::TestAll() {
+    cout << "\n=== Running All Tests ===\n";
+
+    cout << "\n--- Testing Shuffle ---\n";
+    TestShuffle();
+    
+    cout << "\n--- Testing Deck ---\n";
     TestDeck();
+    
+    cout << "\n--- Testing Card ---\n";
     TestCard();
+    
+    cout << "\n--- Testing Participant ---\n";
     TestParticipant();
+    
+    
+    
+    cout << "\n=== All Tests Complete ===\n";
+}
+
+
+int main() {
+    cout << "Starting test execution..." << endl;
+    
+    Test* test = new Test();
+     
+    test->TestAll(); // Run all tests 
+    
+    delete test;
+
+    cout << "Test execution complete." << endl;
+
+    return 0;
 }

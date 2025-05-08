@@ -17,6 +17,7 @@ class Test{
         void TestDeck();
         void TestCard();
         void TestParticipant();
+        void TestShuffle();
 };
 
 #endif

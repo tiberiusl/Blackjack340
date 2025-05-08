@@ -9,9 +9,9 @@ class LinkedList {
         Node* head; 
         Node* tail; 
         int count;
-        void split(LinkedList*& left, LinkedList*& right);
-        void updateTailAndSize();   
-        void mergeSort(LinkedList * topListPtr);
+        //void split(LinkedList*& left, LinkedList*& right);
+        //void updateTailAndSize();   
+        //void mergeSort(LinkedList * topListPtr);
 
            
     public:
@@ -28,6 +28,10 @@ class LinkedList {
         void  setHead(Node* newHead);
         void  setTail(Node* newTail);
         void  setSize(int newSize);
+        void split(LinkedList*& left, LinkedList*& right);
+        void updateTailAndSize();   
+        void mergeSort(LinkedList * topListPtr);
+        Card* pop_back();
 
 };
 

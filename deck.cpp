@@ -2,13 +2,16 @@
 #include "linkedlist.h"
 #include <vector>
 #include <iostream>
+#include <random>
+#include <algorithm>
 
 Deck::Deck() {
     this->deck = new LinkedList;
 }
 
 Deck::~Deck() {
-    this->deck->clear();
+    deck->clear();
+    delete deck;
     
 }
 
@@ -37,29 +40,121 @@ void Deck::fill() { //populates a linkedlist with 52 cards
 }
 
 void Deck::shuffle() {
+    // 1) Cut the list into two halves
+    //std::cout << "[SHUFFLE] start\n" << std::flush;
+    LinkedList* leftHalf = nullptr;
+    LinkedList* rightHalf = nullptr;
+    this->deck->split(leftHalf, rightHalf);
+    /*std::cout 
+      << "[SHUFFLE] after split: leftSize=" << leftHalf->size() 
+      << " rightSize=" << rightHalf->size() << "\n" 
+      << std::flush;*/
 
-//to implement    
+    // 2) Drain each half into vectors for easier manipulation
+    std::vector<Card*> leftBuffer;
+    std::vector<Card*> rightBuffer;
+    
+    //std::cout << "[SHUFFLE] draining leftHalf\n" << std::flush;
+    while (leftHalf->size() > 0) {
+        leftBuffer.push_back(leftHalf->pop_back());
+    }
+
+    //std::cout << "[SHUFFLE] draining rightHalf\n" << std::flush;
+    while (rightHalf->size() > 0) {
+        rightBuffer.push_back(rightHalf->pop_back());
+    }
+
+    // 3) Restore true top-to-bottom order
+    std::reverse(leftBuffer.begin(), leftBuffer.end());
+    std::reverse(rightBuffer.begin(), rightBuffer.end());
+
+    // 4) Set up random number generator for realistic riffle shuffle
+    std::random_device rd;
+    std::mt19937 generator(rd());
+    std::uniform_int_distribution<int> packetSize(1, 4);
+
+    //std::cout << "[SHUFFLE] interleaving\n" << std::flush;
+    // 5) Riffle shuffle: interleave random size packets from each half
+    std::vector<Card*> shuffled;
+    while (!leftBuffer.empty() || !rightBuffer.empty()) {
+        // Handle remaining cards if one buffer is empty
+        if (leftBuffer.empty()) {
+            shuffled.insert(shuffled.end(), rightBuffer.begin(), rightBuffer.end());
+            break;
+        }
+        if (rightBuffer.empty()) {
+            shuffled.insert(shuffled.end(), leftBuffer.begin(), leftBuffer.end());
+            break;
+        }
+
+        // Take random packet from left
+        int leftCount = std::min(packetSize(generator), (int)leftBuffer.size());
+        for (int i = 0; i < leftCount; i++) {
+            shuffled.push_back(leftBuffer.back());
+            leftBuffer.pop_back();
+        }
+
+        // Take random packet from right
+        int rightCount = std::min(packetSize(generator), (int)rightBuffer.size());
+        for (int i = 0; i < rightCount; i++) {
+            shuffled.push_back(rightBuffer.back());
+            rightBuffer.pop_back();
+        }
+    }
+
+    //std::cout << "[SHUFFLE] done interleaving\n" << std::flush;
+    // 6) Clear original deck and rebuild with shuffled cards
+    /*std::cout 
+      << "[SHUFFLE] before clear: deckSize=" << this->deck->size() 
+      << "  shuffledCount=" << shuffled.size() 
+      << "\n" << std::flush;*/
+
+    
+    this->deck->setHead(nullptr);
+    this->deck->setTail(nullptr);
+    this->deck->setSize(0);
+
+    /*std::cout 
+      << "[SHUFFLE] after clear: deckSize=" << this->deck->size() 
+      << "\n" << std::flush;*/
+
+    for (Card* card : shuffled) {
+        this->deck->push_back(card);
+    }
+
+    /*int idx = 0;
+    for (Card* card : shuffled) {
+        std::cout 
+          << "[SHUFFLE] push_back #" << ++idx 
+          << " -> " << card->getName() 
+          << " of " << card->getSuit() 
+          << "\n" << std::flush;
+        this->deck->push_back(card);
+    }*/
+
+    /*std::cout 
+      << "[SHUFFLE] after rebuild: deckSize=" << this->deck->size() 
+      << "\n" << std::flush;*/
+
+    // Clean up temporary lists
+    delete leftHalf;
+    delete rightHalf;
 }
 
 Card* Deck::pop_back() {
+    std::cout << "[DEBUG] Deck::pop_back()\n";
     Node* tailNode = this->deck->getTail();
-
-    if (tailNode == nullptr) { //if deck is empty
-        return nullptr;
-    }
+    if (tailNode == nullptr) return nullptr;
     
-    //clone card* of node
-    //this enables deleting node from deck
-    //while keeping its card* which will enter
-    //dealer or player's hand with push_back()
-    Card* original = tailNode->getData();
-    Card* copy = original->clone();
-
-    //delete Node
-    delete original;
+    // 1) Clone the card so the caller owns this new copy
+    Card* copy = tailNode->getData()->clone();
+    
+    // 2) Delete the node (this also deletes the original Card* stored in that node)
     this->deck->deleteNode(tailNode);
-
+    
+    // 3) Return the clone
     return copy;
+    
 }
 
 //for testing purposes only

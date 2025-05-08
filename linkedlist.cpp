@@ -248,3 +248,36 @@ void LinkedList::mergeSort(LinkedList* topListPtr) {
     delete right;
 }
 
+Card* LinkedList::pop_back() {
+    /*if (this->tail == nullptr) return nullptr;
+    Node* toRemove = this->tail;
+    Card* cardData = toRemove->getData();
+    this->tail = toRemove->getPrev();
+    if (this->tail) this->tail->setNext(nullptr);
+    else this->head = nullptr;
+    delete toRemove;
+    --this->count;
+    return cardData;*/
+
+    if (this->tail == nullptr) 
+        return nullptr;
+
+    // 1) grab the node we’ll remove
+    Node* toRemove = this->tail;
+
+    // 2) clone its Card so caller gets a fresh copy
+    Card* copy = toRemove->getData()->clone();
+
+    // 3) unlink & delete the node (this also deletes the original Card*)
+    this->tail = toRemove->getPrev();
+    if (this->tail) 
+        this->tail->setNext(nullptr);
+    else 
+        this->head = nullptr;
+
+    delete toRemove;      // Node::~Node should delete its getData()
+    --this->count;
+
+    // 4) return the clone
+    return copy; 
+}

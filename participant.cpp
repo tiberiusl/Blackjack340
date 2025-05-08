@@ -8,8 +8,10 @@ Participant::Participant() {
 }
 
 Participant::~Participant() {
-    // Destructor implementation
-    this->hand->clear(); // Clear the hand when the participant is destroyed
+    
+    this->hand->clear();   // clear all nodes/cards
+    delete this->hand;     // free the LinkedList object itself
+    this->hand = nullptr;  // avoid dangling pointer
 }
 
 void Participant::addCard(Card* card) {
