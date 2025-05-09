@@ -67,3 +67,15 @@ void BlackJack::endGame() {
 
 //to implement        
 }
+
+void BlackJack::play() {
+    int exit = 0;
+    int userIn = -1;
+    while (exit == 0) {
+        playGame();
+        while (userIn != 0 || userIn != 1) {
+            cout << "Keep playing? Enter 1 to exit, 0 to continue: ";
+            cin >> userIn;
+        }
+    }
+}

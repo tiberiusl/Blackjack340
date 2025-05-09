@@ -3,6 +3,6 @@ using namespace std;
 
 int main() {
     Test newTest;
-    newTest.Testing();
+    newTest.TestAll();
     return 0;
 }

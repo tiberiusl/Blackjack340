@@ -230,18 +230,3 @@ void Test::TestAll() {
     
     cout << "\n=== All Tests Complete ===\n";
 }
-
-
-int main() {
-    cout << "Starting test execution..." << endl;
-    
-    Test* test = new Test();
-     
-    test->TestAll(); // Run all tests 
-    
-    delete test;
-
-    cout << "Test execution complete." << endl;
-
-    return 0;
-}
