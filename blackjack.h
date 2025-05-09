@@ -10,14 +10,14 @@ class BlackJack {
         Player player; 
         Dealer dealer; 
         Deck deck; 
+        void playGame(); 
+        void startGame(); 
+        void endGame(); 
 
     public:
         BlackJack(); 
         ~BlackJack(); 
-
-        void playGame(); 
-        void startGame(); 
-        void endGame(); 
+        void play();
 
 };
 
