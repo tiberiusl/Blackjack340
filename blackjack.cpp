@@ -41,14 +41,14 @@ int BlackJack::playGame() {
     } else if (dealerHandVal > 21) { //dealer hand is invalid
         cout << "Dealer has gone bust" << endl;
         win = true;
+    } else if (playerHandVal == dealerHandVal) {
+        cout << "Round is tied" << endl;
     } else if (playerHandVal > dealerHandVal) { //player wins
         cout << "Your hand wins" << endl;
         win = true;
     } else if (dealerHandVal > playerHandVal) { //dealer wins
         cout << "Dealer's hand wins" << endl;
         win = false;
-    } else if (playerHandVal == dealerHandVal) {
-        cout << "Both hands go bust" << endl;
     }
 
     //clear hands
@@ -62,11 +62,11 @@ int BlackJack::playGame() {
 
 void BlackJack::startGame() {
     this->deck->fill(); //fill deck
-    cout << "DEBUG: showing deck after fill()" << endl;
-    this->deck->printDeck();
+    //cout << "DEBUG: showing deck after fill()" << endl;
+    //this->deck->printDeck();
     this->deck->shuffle(); ////shuffle deck
-    cout << "DEBUG: showing deck after shuffle()" << endl;
-    this->deck->printDeck();
+    //cout << "DEBUG: showing deck after shuffle()" << endl;
+    //this->deck->printDeck();
 
     for (unsigned int i = 0; i < 2; ++i) { //add two cards to dealer + player
         this->player->addCard(this->deck->pop_back());
