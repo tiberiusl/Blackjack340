@@ -1,16 +1,5 @@
 #include "player.h"
 using namespace std;
-/*
-Player::Player() {
-    this->hand = new LinkedList;
-// to implement
-}
-
-Player::~Player() {
-    this->hand->clear();
-// to implement
-}
-*/
 void Player::takeTurn(Deck* myDeck) {
     string input;
     int playerNum;
@@ -36,6 +25,4 @@ void Player::takeTurn(Deck* myDeck) {
             stand = true;
         }
     }
-
-// to implement
 }
