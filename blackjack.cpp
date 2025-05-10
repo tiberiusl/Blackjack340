@@ -15,7 +15,7 @@ BlackJack::~BlackJack() {
 //to implement    
 }
 
-bool BlackJack::playGame() {
+int BlackJack::playGame() {
     //initialize player, dealer, and deck
     this->startGame();
     bool win; //shows if player wins or loses
@@ -47,6 +47,8 @@ bool BlackJack::playGame() {
     } else if (dealerHandVal > playerHandVal) { //dealer wins
         cout << "Dealer's hand wins" << endl;
         win = false;
+    } else if (playerHandVal == dealerHandVal) {
+        cout << "Both hands go bust" << endl;
     }
 
     //clear hands
@@ -72,9 +74,9 @@ void BlackJack::startGame() {
     }
 }
 
-void BlackJack::endGame(bool win) {
+void BlackJack::endGame(int win) {
     //set up ostream
-    //use win to determine if player wins or loses
+    //use win to determine if player wins or loses or draws
     //print winner of round + winning hand/hand value to text file
     cout << "endGame() called" << endl;
 //to implement        

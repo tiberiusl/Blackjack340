@@ -11,9 +11,9 @@ class BlackJack {
         Player* player; 
         Dealer* dealer; 
         Deck* deck; 
-        bool playGame(); 
+        int playGame(); 
         void startGame(); 
-        void endGame(bool win);
+        void endGame(int win);
 
     public:
         BlackJack(); 

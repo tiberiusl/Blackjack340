@@ -8,10 +8,7 @@
 
 class Player : public Participant {
 
-    public:
-        //Player(); 
-        //~Player() override; 
-
+    public: 
         void takeTurn(Deck* myDeck) override;
 };
 

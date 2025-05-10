@@ -4,10 +4,7 @@
 #include "participant.h"
 
 class Dealer : public Participant {
-    public:
-        //Dealer(); 
-        //~Dealer() override; 
-
+    public: 
         void takeTurn(Deck* myDeck); 
 
 };
