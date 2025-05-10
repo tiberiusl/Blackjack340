@@ -21,7 +21,7 @@ class Participant {
         int calculateHandValue() const; 
         LinkedList* getHand() const;
         
-        virtual void takeTurn(Deck& myDeck) = 0; 
+        virtual void takeTurn(Deck* myDeck) = 0; 
 
 };
 

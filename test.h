@@ -10,6 +10,7 @@
 #include "deck.h"
 #include "player.h"
 #include "dealer.h"
+#include "blackjack.h"
 
 class Test{
     public:

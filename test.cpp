@@ -230,3 +230,8 @@ void Test::TestAll() {
     
     cout << "\n=== All Tests Complete ===\n";
 }
+
+void Test::testPlay() {
+    BlackJack newBlackjack;
+    newBlackjack.play();
+}

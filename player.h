@@ -3,6 +3,7 @@
 
 #include "participant.h"
 #include <iostream>
+#include <sstream>
 
 
 class Player : public Participant {
@@ -11,7 +12,7 @@ class Player : public Participant {
         //Player(); 
         //~Player() override; 
 
-        void takeTurn(Deck& myDeck) override;
+        void takeTurn(Deck* myDeck) override;
 };
 
 

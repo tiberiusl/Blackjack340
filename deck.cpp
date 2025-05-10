@@ -15,6 +15,10 @@ Deck::~Deck() {
     
 }
 
+void Deck::clearDeck() {
+    this->deck->clear();
+}
+
 void Deck::fill() { //populates a linkedlist with 52 cards
     std::vector<std::string> values = {"Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King"};
     std::vector<int> scores = {11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10};

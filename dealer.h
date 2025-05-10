@@ -8,7 +8,7 @@ class Dealer : public Participant {
         //Dealer(); 
         //~Dealer() override; 
 
-        void takeTurn(Deck& myDeck); 
+        void takeTurn(Deck* myDeck); 
 
 };
 

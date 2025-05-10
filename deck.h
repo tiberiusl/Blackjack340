@@ -22,6 +22,7 @@ class Deck {
         Card* pop_back();
         int size() const; 
         void printDeck() const; //created for testing purposes
+        void clearDeck();
            
 };
 
