@@ -4,9 +4,11 @@
 #include <iostream>
 #include <random>
 #include <algorithm>
+#include <ctime>
 
 Deck::Deck() {
     this->deck = new LinkedList;
+    this->generator.seed(static_cast<unsigned int>(time(nullptr)));
 }
 
 Deck::~Deck() {
@@ -73,8 +75,6 @@ void Deck::shuffle() {
     std::reverse(rightBuffer.begin(), rightBuffer.end());
 
     // 4) Set up random number generator for realistic riffle shuffle
-    std::random_device rd;
-    std::mt19937 generator(rd());
     std::uniform_int_distribution<int> packetSize(1, 4);
 
     //std::cout << "[SHUFFLE] interleaving\n" << std::flush;
@@ -146,7 +146,7 @@ void Deck::shuffle() {
 }
 
 Card* Deck::pop_back() {
-    std::cout << "[DEBUG] Deck::pop_back()\n";
+    //std::cout << "[DEBUG] Deck::pop_back()\n";
     Node* tailNode = this->deck->getTail();
     if (tailNode == nullptr) return nullptr;
     

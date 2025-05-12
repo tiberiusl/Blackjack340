@@ -1,0 +1,95 @@
+=== End of Round ===
+Player's hand (20): 10 of Clover, Queen of Clover
+Dealer's hand (21): 5 of Heart, 3 of Diamond, 3 of Heart, 4 of Spade, 6 of Heart
+Outcome: Dealer wins or tie.
+
+=== End of Round ===
+Player's hand (20): 10 of Heart, King of Spade
+Dealer's hand (23): Queen of Spade, 5 of Diamond, 2 of Diamond, 6 of Heart
+Outcome: Player wins.
+
+=== End of Round ===
+Player's hand (18): 2 of Diamond, 6 of Diamond, 10 of Spade
+Dealer's hand (23): 5 of Spade, 6 of Clover, 3 of Heart, 9 of Heart
+Outcome: Player wins.
+
+=== End of Round ===
+Player's hand (19): 8 of Heart, 8 of Diamond, 3 of Spade
+Dealer's hand (18): Jack of Heart, 8 of Spade
+Outcome: Dealer wins or tie.
+
+=== End of Round ===
+Player's hand (23): 10 of Clover, Queen of Clover, 3 of Heart
+Dealer's hand (18): 5 of Heart, 3 of Diamond, 4 of Spade, 6 of Heart
+Outcome: Dealer wins or tie.
+
+=== End of Round ===
+Player's hand (20): 10 of Heart, King of Spade
+Dealer's hand (23): Queen of Spade, 5 of Diamond, 2 of Diamond, 6 of Heart
+Outcome: Player wins.
+
+=== End of Round ===
+Player's hand (18): 2 of Diamond, 6 of Diamond, 10 of Spade
+Dealer's hand (23): 5 of Spade, 6 of Clover, 3 of Heart, 9 of Heart
+Outcome: Player wins.
+
+=== End of Round ===
+Player's hand (20): 10 of Clover, Queen of Clover
+Dealer's hand (21): 5 of Heart, 3 of Diamond, 3 of Heart, 4 of Spade, 6 of Heart
+Outcome: Dealer wins or tie.
+
+=== End of Round ===
+Player's hand (20): 10 of Heart, King of Spade
+Dealer's hand (23): Queen of Spade, 5 of Diamond, 2 of Diamond, 6 of Heart
+Outcome: Player wins.
+
+=== End of Round ===
+Player's hand (25): Jack of Heart, 6 of Clover, 9 of Diamond
+Dealer's hand (23): 4 of Heart, Queen of Diamond, Ace of Heart, 8 of Diamond
+Outcome: Dealer wins or tie.
+
+=== End of Round ===
+Player's hand (18): 8 of Heart, Jack of Diamond
+Dealer's hand (27): 8 of Diamond, 9 of Heart, 10 of Spade
+Outcome: Player wins.
+
+=== End of Round ===
+Player's hand (24): 2 of Spade, 5 of Spade, 7 of Clover, Jack of Heart
+Dealer's hand (23): 2 of Heart, 6 of Diamond, 5 of Clover, Jack of Spade
+Outcome: Dealer wins or tie.
+
+=== End of Round ===
+Player's hand (22): 2 of Spade, Jack of Heart, 10 of Diamond
+Dealer's hand (18): Ace of Spade, 7 of Diamond
+Outcome: Dealer wins or tie.
+
+=== End of Round ===
+Player's hand (18): 5 of Spade, 5 of Heart, 8 of Clover
+Dealer's hand (26): 7 of Clover, 7 of Spade, 2 of Clover, Ace of Diamond, 9 of Diamond
+Outcome: Player wins.
+
+=== End of Round ===
+Player's hand (18): 3 of Diamond, 7 of Clover, 2 of Spade, 6 of Spade
+Dealer's hand (25): 6 of Clover, 9 of Clover, King of Clover
+Outcome: Player wins.
+
+=== End of Round ===
+Player's hand (17): 6 of Heart, 3 of Heart, 8 of Heart
+Dealer's hand (23): 6 of Spade, 8 of Clover, 9 of Heart
+Outcome: Player wins.
+
+=== End of Round ===
+Player's hand (21): Ace of Spade, 10 of Spade
+Dealer's hand (26): 2 of Spade, 7 of Spade, 2 of Diamond, 6 of Diamond, 9 of Diamond
+Outcome: Player wins.
+
+=== End of Round ===
+Player's hand (22): Queen of Heart, 2 of Spade, Queen of Diamond
+Dealer's hand (18): 3 of Spade, 10 of Heart, 5 of Clover
+Outcome: Dealer wins or tie.
+
+=== End of Round ===
+Player's hand (18): Jack of Clover, 8 of Heart
+Dealer's hand (21): 3 of Heart, King of Diamond, 8 of Spade
+Outcome: Dealer wins or tie.
+

@@ -7,11 +7,12 @@
 #include"heart.h"
 #include"spade.h"
 #include"clover.h"
+#include <random>
 
 class Deck {
     private:
         LinkedList* deck; 
-        
+        std::mt19937 generator;
 
     public:
         Deck(); 

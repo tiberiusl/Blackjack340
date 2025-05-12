@@ -249,15 +249,6 @@ void LinkedList::mergeSort(LinkedList* topListPtr) {
 }
 
 Card* LinkedList::pop_back() {
-    /*if (this->tail == nullptr) return nullptr;
-    Node* toRemove = this->tail;
-    Card* cardData = toRemove->getData();
-    this->tail = toRemove->getPrev();
-    if (this->tail) this->tail->setNext(nullptr);
-    else this->head = nullptr;
-    delete toRemove;
-    --this->count;
-    return cardData;*/
 
     if (this->tail == nullptr) 
         return nullptr;
