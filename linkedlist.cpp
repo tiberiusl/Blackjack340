@@ -125,7 +125,7 @@ void LinkedList::mergeLists(LinkedList* listB) { //mergest two lists in order, k
         } else if (currentB == nullptr) { // listB empty, take from listA
             nextNode = currentA;
             currentA = currentA->getNext();
-        } else if (currentA->getData() < currentB->getData()) { // listA smaller
+        } else if (*(currentA->getData()) < *(currentB->getData())) { // listA smaller
             nextNode = currentA;
             currentA = currentA->getNext();
         } else { // listB smaller OR equal (<=)

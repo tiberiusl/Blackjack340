@@ -211,7 +211,7 @@ void Test::TestShuffle() {
     //get member called deck from Deck pointer deck
     //to call mergeSort()
     deck->getDeck()->mergeSort();
-    cout << "\nDeck after mergeSort():" << endl;
+    cout << "\nDeck after mergeSort():" << endl << endl;
     deck->printDeck();
 
     delete deck;
