@@ -4,10 +4,7 @@
 using namespace std;
 
 int main() {
-    //BlackJack game;
-    //game.play();
-
-    Test newTest;
-    newTest.TestShuffle();
+    BlackJack game;
+    game.play();
     return 0;
 }
