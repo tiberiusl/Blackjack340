@@ -103,3 +103,8 @@ Player's hand (19): Jack of Clover, 9 of Heart
 Dealer's hand (21): Queen of Clover, 5 of Clover, 6 of Spade
 Outcome: Dealer wins or tie.
 
+=== End of Round ===
+Player's hand (19): 8 of Spade, 6 of Spade, 5 of Clover
+Dealer's hand (26): Queen of Heart, Ace of Heart, Queen of Diamond, Ace of Spade, 2 of Spade, 2 of Clover
+Outcome: Player wins.
+

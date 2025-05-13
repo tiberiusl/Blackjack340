@@ -179,3 +179,7 @@ void Deck::printDeck() const {
 int Deck::size() const {
     return this->deck->size(); 
 }
+
+LinkedList* Deck::getDeck() {
+    return this->deck;
+}

@@ -24,6 +24,7 @@ class Deck {
         int size() const; 
         void printDeck() const; //created for testing purposes
         void clearDeck();
+        LinkedList* getDeck();
            
 };
 
