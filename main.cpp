@@ -4,7 +4,7 @@
 using namespace std;
 
 int main() {
-    Test newTest;
-    newTest.TestPrintCardIcon();
+    BlackJack game;
+    game.play();
     return 0;
 }

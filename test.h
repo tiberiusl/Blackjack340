@@ -20,7 +20,7 @@ class Test{
         void TestCard();
         void TestParticipant();
         void TestShuffle();
-        void testPlay();
+        void TestPlay();
 
         void TestMenu();
         void TestPrintCardIcon();
