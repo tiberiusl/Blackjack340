@@ -13,7 +13,7 @@ BlackJack::~BlackJack() {
     delete this->player;
     delete this->dealer;
     delete this->deck;
-//to implement    
+    
 }
 
 int BlackJack::playGame() {
@@ -23,7 +23,10 @@ int BlackJack::playGame() {
 
     //player(s) and dealer take their turns
     this->player->takeTurn(this->deck);
+    //this->dealer->takeTurn(this->deck); test for player bust
+    if (this->player->calculateHandValue() <= 21) {
     this->dealer->takeTurn(this->deck);
+}
 
     //display final hands
 
@@ -37,18 +40,19 @@ int BlackJack::playGame() {
 
     //handle win/lose logic
     if (playerHandVal > 21) { //player hand is invalid (over 21)
-        cout << "You've gone bust" << endl;
+        cout << "====== You've gone bust ======" << endl;
         win = false;
     } else if (dealerHandVal > 21) { //dealer hand is invalid
-        cout << "Dealer has gone bust" << endl;
+        cout << "====== Dealer has gone bust ======" << endl;
         win = true;
     } else if (playerHandVal == dealerHandVal) {
-        cout << "Round is tied" << endl;
-    } else if (playerHandVal > dealerHandVal) { //player wins
-        cout << "Your hand wins" << endl;
+        cout << "====== Round is tied ======" << endl;
         win = false;
+    } else if (playerHandVal > dealerHandVal) { //player wins
+        cout << "====== Your hand wins ======" << endl;
+        win = true;
     } else if (dealerHandVal > playerHandVal) { //dealer wins
-        cout << "Dealer's hand wins" << endl;
+        cout << "====== Dealer's hand wins ======" << endl;
         win = false;
     }
 
@@ -57,6 +61,8 @@ int BlackJack::playGame() {
     this->deck->clearDeck();
     this->player->getHand()->clear();
     this->dealer->getHand()->clear();
+
+    cout << "====== End of Round ======" << endl;
 
     return win;
 
