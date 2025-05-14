@@ -30,6 +30,7 @@ void Participant::showCards() const {
 
     //traverse through linkedlist
     //calling printCard on each Card* in list
+    this->hand->mergeSort();
     Node* current = this->hand->getHead();
     while (current) {
         Card* currentCard = current->getData();

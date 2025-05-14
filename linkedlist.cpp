@@ -125,7 +125,7 @@ void LinkedList::mergeLists(LinkedList* listB) { //mergest two lists in order, k
         } else if (currentB == nullptr) { // listB empty, take from listA
             nextNode = currentA;
             currentA = currentA->getNext();
-        } else if (currentA->getData() < currentB->getData()) { // listA smaller
+        } else if (*(currentA->getData()) < *(currentB->getData())) { // listA smaller
             nextNode = currentA;
             currentA = currentA->getNext();
         } else { // listB smaller OR equal (<=)
@@ -163,11 +163,15 @@ void LinkedList::mergeLists(LinkedList* listB) { //mergest two lists in order, k
     listB->setSize(0);
 }
 
-void LinkedList::split(LinkedList*& left, LinkedList*& right) {
+void LinkedList::split(LinkedList* left, LinkedList* right) {
     if (this->getHead() == nullptr || this->getHead()->getNext() == nullptr) {
         // If 0 or 1 element, no split needed
-        left = this;
-        right = new LinkedList(); // empty right-side LinkedList
+        left->setHead(this->getHead());
+        left->updateTailAndSize();
+        
+        right->setHead(nullptr);
+        right->setTail(nullptr);
+        right->setSize(0);
         return;
     }
 
@@ -187,9 +191,6 @@ void LinkedList::split(LinkedList*& left, LinkedList*& right) {
     if (mid != nullptr)  {
        mid->setPrev(nullptr);
     }
-    // Create two new LinkedLists
-    left = new LinkedList();
-    right = new LinkedList();
 
     // Set left's Head pointer
     left->setHead(this->getHead());

@@ -202,10 +202,17 @@ void Test::TestShuffle() {
     deck->printDeck();
     
     // Verify deck count remains 52
-    if (deck->size() == 52)
+    if (deck->size() == 52) {
         cout << "\nTestShuffle passed: deck still has 52 cards after shuffling." << endl;
-    else
+    } else {
         cout << "\nTestShuffle failed: deck count changed after shuffling." << endl;
+    }
+
+    //get member called deck from Deck pointer deck
+    //to call mergeSort()
+    deck->getDeck()->mergeSort();
+    cout << "\nDeck after mergeSort():" << endl << endl;
+    deck->printDeck();
 
     delete deck;
 }
@@ -226,12 +233,13 @@ void Test::TestAll() {
     cout << "\n--- Testing Participant ---\n";
     TestParticipant();
     
-    
+    cout << "\n--- Testing Play() ---\n";
+    TestPlay();
     
     cout << "\n=== All Tests Complete ===\n";
 }
 
-void Test::testPlay() {
+void Test::TestPlay() {
     BlackJack newBlackjack;
     newBlackjack.play();
 }

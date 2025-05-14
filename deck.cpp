@@ -48,8 +48,8 @@ void Deck::fill() { //populates a linkedlist with 52 cards
 void Deck::shuffle() {
     // 1) Cut the list into two halves
     //std::cout << "[SHUFFLE] start\n" << std::flush;
-    LinkedList* leftHalf = nullptr;
-    LinkedList* rightHalf = nullptr;
+    LinkedList* leftHalf = new LinkedList();
+    LinkedList* rightHalf = new LinkedList();
     this->deck->split(leftHalf, rightHalf);
     /*std::cout 
       << "[SHUFFLE] after split: leftSize=" << leftHalf->size() 
@@ -178,4 +178,8 @@ void Deck::printDeck() const {
 
 int Deck::size() const {
     return this->deck->size(); 
+}
+
+LinkedList* Deck::getDeck() {
+    return this->deck;
 }
