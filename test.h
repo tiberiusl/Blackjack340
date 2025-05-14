@@ -11,6 +11,7 @@
 #include "player.h"
 #include "dealer.h"
 #include "blackjack.h"
+#include "klondike.h"
 
 class Test{
     public:
@@ -20,6 +21,9 @@ class Test{
         void TestParticipant();
         void TestShuffle();
         void TestPlay();
+
+        void TestMenu();
+        void TestPrintCardIcon();
 };
 
 #endif
