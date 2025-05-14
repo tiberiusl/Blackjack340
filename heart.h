@@ -15,7 +15,7 @@ class Heart : public Card {
         std::string getSuit() const override; // Get the suit of the card
         Card* clone() const override;
         virtual void printCard() const override;
-        
+
 };
 
 #endif

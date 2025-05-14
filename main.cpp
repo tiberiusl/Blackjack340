@@ -5,6 +5,6 @@ using namespace std;
 
 int main() {
     Test newTest;
-    newTest.testPlay();
+    newTest.TestPrintCardIcon();
     return 0;
 }

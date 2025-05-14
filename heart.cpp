@@ -6,7 +6,7 @@ using namespace std;
 Heart::Heart() {
 
     setVal(0);
-    this->suit = "heart"; 
+    this->suit = "Heart";
 }
 
 Heart::Heart(int val) {

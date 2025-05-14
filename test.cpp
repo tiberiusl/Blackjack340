@@ -235,3 +235,43 @@ void Test::testPlay() {
     BlackJack newBlackjack;
     newBlackjack.play();
 }
+
+// klondike
+void Test::TestMenu() {
+    cout << "Which game would you like to play?" << endl;
+    cout << "1.) Blackjack" << endl;
+    cout << "2.) Klondike" << endl;
+    cout << "Enter a number to choose: ";
+
+    string input;
+    getline(cin, input);
+    stringstream ss(input);
+    unsigned int userChoice;
+    
+    if (ss >> userChoice) {
+        if (userChoice == 1) {
+            testPlay();
+        } else if (userChoice == 2) {
+            // FIXME NOT IMPLEMENTED
+
+        } else {
+            cout << "Invalid input. Please try again!" << endl;
+        }
+    } else {
+        cout << "Invalid input. Please try again!" << endl;
+    }
+}
+void Test::TestPrintCardIcon() {
+    Card* newHeart = new Heart(1);
+    Card* newClover = new Clover(1);
+    Card* newDiamond = new Diamond(1);
+    Card* newSpade = new Spade(1);
+    newHeart->PrintCardIcon();
+    newClover->PrintCardIcon();
+    newDiamond->PrintCardIcon();
+    newSpade->PrintCardIcon();
+    delete newHeart;
+    delete newClover;
+    delete newDiamond;
+    delete newSpade;
+}
