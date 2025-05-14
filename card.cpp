@@ -46,51 +46,26 @@ bool Card::getFaceDown() const {
 void Card::setFaceDown(bool newFaceDown) {
     this->facedown = newFaceDown;
 }
-void Card::PrintCardIcon() const {
-    int base;
+void Card::DisplayCard() const {
+    if (this->getFaceDown() == true) {
+        cout << GREY << "??" << RESET;
+        return;
+    }
     if (this->getSuit() == "Spade") {
-        base = 0x1F0A0;
-    } else if (this->getSuit() == "Heart") {
-        base = 0x1F0B0;
-    } else if (this->getSuit() == "Diamond") {
-        base = 0x1F0C0;
-    } else if (this->getSuit() == "Clover") {
-        base = 0x1F0D0;
-    } else {
-        cout << "INVALID SUIT";
-        return;
+        cout << WHITE << "S";
+        if (this->getVal() <= 10) {
+            cout << this->getVal();
+        } else if (this->getVal() == 11) {
+            cout << "J";
+        } else if (this->getVal() == 12) {
+            cout << "Q";
+        } else if (this->getVal() == 13) {
+            cout << "K";
+        } else {
+            cout << "?";
+        }
+        cout << RESET;
     }
-    int offset;
-    if (this->getVal() >= 1 && this->getVal() <= 10) {
-        offset = this->getVal();
-    } else if (this->getVal() == 11) {
-        offset = 0x0B;
-    } else if (this->getVal() == 12) {
-        offset = 0x0D;
-    } else if (this->getVal() == 13) {
-        offset = 0x0E;
-    } else {
-        cout << "INVALID RANK";
-        return;
-    }
-    int codepoint = base + offset;
-    char buffer[5] = {};
-    if (codepoint <= 0x7F) {
-        buffer[0] = codepoint;
-    } else if (codepoint <= 0x7FF) {
-        buffer[0] = 0xC0 | ((codepoint >> 6) & 0x1F);
-        buffer[1] = 0x80 | (codepoint & 0x3F);
-    } else if (codepoint <= 0xFFFF) {
-        buffer[0] = 0xE0 | ((codepoint >> 12) & 0x0F);
-        buffer[1] = 0x80 | ((codepoint >> 6) & 0x3F);
-        buffer[2] = 0x80 | (codepoint & 0x3F);
-    } else {
-        buffer[0] = 0xF0 | ((codepoint >> 18) & 0x07);
-        buffer[1] = 0x80 | ((codepoint >> 12) & 0x3F);
-        buffer[2] = 0x80 | ((codepoint >> 6) & 0x3F);
-        buffer[3] = 0x80 | (codepoint & 0x3F);
-    }
-    cout << "Card: " << buffer << endl;
 }
 
 /*

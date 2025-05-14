@@ -23,7 +23,7 @@ class Test{
         void TestPlay();
 
         void TestMenu();
-        void TestPrintCardIcon();
+        void TestDisplayCard();
 };
 
 #endif

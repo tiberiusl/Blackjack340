@@ -40,7 +40,7 @@ class Card {
 
         bool getFaceDown() const;
         void setFaceDown(bool newFaceDown);
-        void PrintCardIcon() const;
+        void DisplayCard() const;
 
 };
 

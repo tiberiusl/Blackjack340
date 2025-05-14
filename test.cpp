@@ -269,17 +269,8 @@ void Test::TestMenu() {
         cout << "Invalid input. Please try again!" << endl;
     }
 }
-void Test::TestPrintCardIcon() {
-    Card* newHeart = new Heart(1);
-    Card* newClover = new Clover(1);
-    Card* newDiamond = new Diamond(1);
+void Test::TestDisplayCard() {
     Card* newSpade = new Spade(1);
-    newHeart->PrintCardIcon();
-    newClover->PrintCardIcon();
-    newDiamond->PrintCardIcon();
-    newSpade->PrintCardIcon();
-    delete newHeart;
-    delete newClover;
-    delete newDiamond;
+    newSpade->DisplayCard();
     delete newSpade;
 }
