@@ -183,3 +183,31 @@ int Deck::size() const {
 LinkedList* Deck::getDeck() {
     return this->deck;
 }
+
+//
+void Deck::KlondikeFill() {
+    for (unsigned int i = 1; i < 14; ++i) {
+        Card* spade = new Spade(i);
+        this->deck->push_back(spade);
+        Card* heart = new Heart(i);
+        this->deck->push_back(heart);
+        Card* diamond = new Diamond(i);
+        this->deck->push_back(diamond);
+        Card* clover = new Clover(i);
+        this->deck->push_back(clover);
+    }
+}
+void Deck::KlondikePrintDeck() const {
+    Node* current = this->deck->getHead();
+    while (current) {
+        current->getData()->DisplayCard();
+        std::cout << " ";
+        current = current->getNext();
+    }
+}
+void Deck::MoveLastCardTo(Deck &targetDeck) {
+    Card* card = this->pop_back();
+    if (card != nullptr) {
+        targetDeck.getDeck()->push_back(card);
+    }
+}

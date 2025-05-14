@@ -25,7 +25,10 @@ class Deck {
         void printDeck() const; //created for testing purposes
         void clearDeck();
         LinkedList* getDeck();
-           
+
+        void KlondikeFill();
+        void KlondikePrintDeck() const;
+        void MoveLastCardTo(Deck& targetDeck);
 };
 
 

@@ -260,7 +260,8 @@ void Test::TestMenu() {
         if (userChoice == 1) {
             TestPlay();
         } else if (userChoice == 2) {
-            // FIXME NOT IMPLEMENTED
+            klondike newKlondike;
+            newKlondike.play();
 
         } else {
             cout << "Invalid input. Please try again!" << endl;
@@ -271,6 +272,19 @@ void Test::TestMenu() {
 }
 void Test::TestDisplayCard() {
     Card* newSpade = new Spade(1);
+    Card* newHeart = new Heart(10);
+    Card* newDiamond = new Diamond(11);
+    Card* newClover = new Clover(13);
     newSpade->DisplayCard();
+    newHeart->DisplayCard();
+    newDiamond->DisplayCard();
+    newClover->DisplayCard();
     delete newSpade;
+    delete newHeart;
+    delete newDiamond;
+    delete newClover;
+}
+void Test::TestPlayKlondike() {
+    klondike newKlondike;
+    newKlondike.play();
 }

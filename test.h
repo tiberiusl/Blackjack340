@@ -24,6 +24,7 @@ class Test{
 
         void TestMenu();
         void TestDisplayCard();
+        void TestPlayKlondike();
 };
 
 #endif

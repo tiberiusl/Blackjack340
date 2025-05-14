@@ -53,19 +53,27 @@ void Card::DisplayCard() const {
     }
     if (this->getSuit() == "Spade") {
         cout << WHITE << "S";
-        if (this->getVal() <= 10) {
-            cout << this->getVal();
-        } else if (this->getVal() == 11) {
-            cout << "J";
-        } else if (this->getVal() == 12) {
-            cout << "Q";
-        } else if (this->getVal() == 13) {
-            cout << "K";
-        } else {
-            cout << "?";
-        }
-        cout << RESET;
+    } else if (this->getSuit() == "Diamond") {
+        cout << RED << "H";
+    } else if (this->getSuit() == "Heart") {
+        cout << RED << "D";
+    } else if (this->getSuit() == "Clover") {
+        cout << WHITE << "C";
+    } else {
+        cout << "X";
     }
+    if (this->getVal() <= 10) {
+        cout << this->getVal();
+    } else if (this->getVal() == 11) {
+        cout << "J";
+    } else if (this->getVal() == 12) {
+        cout << "Q";
+    } else if (this->getVal() == 13) {
+        cout << "K";
+    } else {
+        cout << "X";
+    }
+    cout << RESET;
 }
 
 /*
