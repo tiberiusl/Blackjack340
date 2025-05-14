@@ -258,7 +258,7 @@ void Test::TestMenu() {
     
     if (ss >> userChoice) {
         if (userChoice == 1) {
-            testPlay();
+            TestPlay();
         } else if (userChoice == 2) {
             // FIXME NOT IMPLEMENTED
 
