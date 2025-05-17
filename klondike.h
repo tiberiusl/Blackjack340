@@ -3,6 +3,8 @@
 
 #include "deck.h"
 
+enum Actions {EXIT_GAME, DRAW_CARD, MOVE_CARD};
+
 class klondike {
 private:
     Deck* deck;
@@ -21,14 +23,17 @@ private:
 public:
     klondike();
     ~klondike();
-    // copy constructor
-    // copy assignment operator
+    klondike(const klondike& original);
+    klondike& operator=(const klondike& original);
     void play();
     void startGame();
     void showBoard() const;
-    int userMove();
+    int getUserMove();
+    void drawCard() const;
+    void moveCard();
     bool moveCardCheck(Deck& source, Deck& target) const;
     Deck* getTargetDeck(const std::string& initials) const;
+
 };
 
 

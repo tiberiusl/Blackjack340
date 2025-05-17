@@ -17,6 +17,29 @@ Deck::~Deck() {
     
 }
 
+Deck::Deck(const Deck& original) {
+    this->deck = new LinkedList;
+    this->generator.seed(static_cast<unsigned int>(time(nullptr)));
+    Node* current = original.deck->getHead();
+    while (current != nullptr) {
+        Card* cardCopy = current->getData()->clone();
+        this->deck->push_back(cardCopy);
+        current = current->getNext();
+    }
+}
+
+Deck& Deck::operator=(const Deck& original) {
+    if (this == &original) return *this;
+    this->deck->clear();
+    Node* current = original.deck->getHead();
+    while (current != nullptr) {
+        Card* cardCopy = current->getData()->clone();
+        this->deck->push_back(cardCopy);
+        current = current->getNext();
+    }
+    return *this;
+}
+
 void Deck::clearDeck() {
     this->deck->clear();
 }
@@ -198,7 +221,7 @@ void Deck::KlondikeFill() {
     }
 }
 void Deck::KlondikePrintDeck() const {
-    Node* current = this->deck->getHead();
+    const Node* current = this->deck->getHead();
     while (current) {
         current->getData()->DisplayCard();
         std::cout << " ";

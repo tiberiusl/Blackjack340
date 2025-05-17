@@ -16,7 +16,10 @@ class Deck {
 
     public:
         Deck(); 
-        ~Deck(); 
+        ~Deck();
+        // needed a copy constructor to use for the klondike copy constructor
+        Deck(const Deck& original);
+        Deck& operator=(const Deck& original);
 
         void fill();
         void shuffle(); 

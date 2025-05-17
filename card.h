@@ -41,6 +41,7 @@ class Card {
         bool getFaceDown() const;
         void setFaceDown(bool newFaceDown);
         void DisplayCard() const;
+        std::string getColor() const;
 
 };
 

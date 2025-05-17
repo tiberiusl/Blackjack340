@@ -75,6 +75,16 @@ void Card::DisplayCard() const {
     }
     cout << RESET;
 }
+std::string Card::getColor() const {
+    if (this->getSuit() == "Spade" || this->getSuit() == "Clover") {
+        return "black";
+    } else if (this->getSuit() == "Heart" || this->getSuit() == "Diamond") {
+        return "red";
+    } else {
+        return "unknown";
+    }
+}
+
 
 /*
 The getSuit() and setSuit() methods are pure virtual functions, 
