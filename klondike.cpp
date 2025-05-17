@@ -97,7 +97,8 @@ void klondike::startGame() {
     for (unsigned int i = 0; i < 7; ++i) {
         this->deck->shuffle();
     }
-    Deck* tableaus[] = {this->tableau1, this->tableau2, this->tableau3, this->tableau4, this->tableau5, this->tableau6, this->tableau7};
+    Deck* tableaus[] = {this->tableau1, this->tableau2, this->tableau3,
+        this->tableau4, this->tableau5, this->tableau6, this->tableau7};
     for (unsigned int cardCount = 1; cardCount <= 7; ++cardCount) {
         for (unsigned int tableau = cardCount - 1; tableau < 7; ++tableau) {
             this->deck->MoveLastCardTo(*tableaus[tableau]);
@@ -203,7 +204,8 @@ void klondike::moveCard() {
     }
     if (this->moveCardCheck(*sourceDeck, *targetDeck)) {
         sourceDeck->MoveLastCardTo(*targetDeck);
-        sourceDeck->getDeck()->getTail()->getData()->setFaceDown(false);
+        targetDeck->getDeck()->getTail()->getData()->setFaceDown(false);
+        if (sourceDeck->size() > 0) sourceDeck->getDeck()->getTail()->getData()->setFaceDown(false);
     } else {
         cout << "Invalid move! Please try again!" << endl;
     }
@@ -211,54 +213,62 @@ void klondike::moveCard() {
 }
 
 bool klondike::moveCardCheck(Deck &source, Deck &target) const {
+    const Card* sourceCard = source.getDeck()->getTail()->getData();
 
-    
+    // debug output
+    cout << "Moving: ";
+    sourceCard->DisplayCard();
+    cout << " to ";
+    if (target.getDeck()->size() > 0) {
+        target.getDeck()->getTail()->getData()->DisplayCard();
+    } else {
+        cout << "empty pile";
+    }
+    cout << endl;
 
-    const bool sameSuit = (source.getDeck()->getTail()->getData()->getSuit() == target.getDeck()->getTail()->getData()->getSuit());
-    const bool sameColor = (source.getDeck()->getTail()->getData()->getColor() == target.getDeck()->getTail()->getData()->getColor());
-    const bool oneRankHigher = (source.getDeck()->getTail()->getData()->getVal() == target.getDeck()->getTail()->getData()->getVal() + 1);
-    const bool oneRankLower = (source.getDeck()->getTail()->getData()->getVal() == target.getDeck()->getTail()->getData()->getVal() - 1);
-    const bool emptyTarget = (target.getDeck()->size() == 0);
+    // for empty target decks:
+    if (target.getDeck()->size() == 0) {
+        // empty foundations only allow aces
+        if (&target == this->spadeFoundation || &target == this->heartFoundation ||
+            &target == this->diamondFoundation || &target == this->cloverFoundation) {
+            return (sourceCard->getVal() == 1) && (
+                (&target == this->spadeFoundation && sourceCard->getSuit() == "Spade") ||
+                (&target == this->heartFoundation && sourceCard->getSuit() == "Heart") ||
+                (&target == this->diamondFoundation && sourceCard->getSuit() == "Diamond") ||
+                (&target == this->cloverFoundation && sourceCard->getSuit() == "Clover"));
+        }
+        // empty tableaus only allow kings
+        return sourceCard->getVal() == 13;
+    }
+
+    // for non-empty target decks:
+    const Card* targetCard = target.getDeck()->getTail()->getData();
+    const bool sameSuit = (sourceCard->getSuit() == targetCard->getSuit());
+    const bool sameColor = (sourceCard->getColor() == targetCard->getColor());
+    const bool oneRankHigher = (sourceCard->getVal() == targetCard->getVal() + 1);
+    const bool oneRankLower = (sourceCard->getVal() == targetCard->getVal() - 1);
+
 
     // case 1: draw pile -> foundation
     if (&source == this->drawPile && (&target == this->spadeFoundation || &target == this->heartFoundation || &target == this->diamondFoundation || &target == this->cloverFoundation)) {
-        if (emptyTarget && source.getDeck()->getTail()->getData()->getVal() == 1) { // only ace can move to an empty foundation
-            return true;
-        }
-        if (sameSuit && oneRankHigher) {
-            return true;
-        }
-        return false;
+        return (sameSuit && oneRankHigher);
     }
     // case 2: draw pile -> tableau
     if (&source == this->drawPile && (&target == this->tableau1 || &target == this->tableau2 || &target == this->tableau3 || &target == this->tableau4 || &target == this->tableau5 || &target == this->tableau6 || &target == this->tableau7)) {
-        if (emptyTarget && source.getDeck()->getTail()->getData()->getVal() == 13) { // only king can move to an empty tableau
-            return true;
-        }
-        if (!sameColor && oneRankLower) {
-            return true;
-        }
-        return false;
+        return (!sameColor && oneRankLower);
     }
     // case 3: tableau -> foundation
     if ((&source == this->tableau1 || &source == this->tableau2 || &source == this->tableau3 || &source == this->tableau4 || &source == this->tableau5 || &source == this->tableau6 || &source == this->tableau7) && (&target == this->spadeFoundation || &target == this->heartFoundation || &target == this->diamondFoundation || &target == this->cloverFoundation)) {
-        if (emptyTarget && source.getDeck()->getTail()->getData()->getVal() == 1) { // only ace can move to an empty foundation
-            return true;
-        }
-        if (sameSuit && oneRankHigher) {
-            return true;
-        }
-        return false;
+        return (sameSuit && oneRankHigher);
     }
     // case 4: tableau -> tableau (multiple cards can be moved at once)
     if ((&source == this->tableau1 || &source == this->tableau2 || &source == this->tableau3 || &source == this->tableau4 || &source == this->tableau5 || &source == this->tableau6 || &source == this->tableau7) && (&target == this->tableau1 || &target == this->tableau2 || &target == this->tableau3 || &target == this->tableau4 || &target == this->tableau5 || &target == this->tableau6 || &target == this->tableau7)) {
-
+        // FIXME moving multiple cards?
+        return (!sameColor && oneRankLower);
     }
     // case 5: foundation -> tableau
     if ((&source == this->spadeFoundation || &source == this->heartFoundation || &source == this->diamondFoundation || &source == this->cloverFoundation) && (&target == this->tableau1 || &target == this->tableau2 || &target == this->tableau3 || &target == this->tableau4 || &target == this->tableau5 || &target == this->tableau6 || &target == this->tableau7)) {
-        if (sameSuit && oneRankLower) {
-            return true;
-        }
+        return (!sameColor && oneRankLower);
     }
     return false;
 }
