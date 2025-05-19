@@ -54,9 +54,9 @@ void Card::DisplayCard() const {
     if (this->getSuit() == "Spade") {
         cout << WHITE << "S";
     } else if (this->getSuit() == "Diamond") {
-        cout << RED << "H";
-    } else if (this->getSuit() == "Heart") {
         cout << RED << "D";
+    } else if (this->getSuit() == "Heart") {
+        cout << RED << "H";
     } else if (this->getSuit() == "Clover") {
         cout << WHITE << "C";
     } else {

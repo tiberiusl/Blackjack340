@@ -29,9 +29,11 @@ class Deck {
         void clearDeck();
         LinkedList* getDeck();
 
-        void KlondikeFill();
+        void KlondikeFill() const;
         void KlondikePrintDeck() const;
         void MoveLastCardTo(Deck& targetDeck);
+        void MoveCardSequence(Deck& targetDeck, int numCards);
+        bool IsValidCardSequence(int startIndex) const;
 };
 
 

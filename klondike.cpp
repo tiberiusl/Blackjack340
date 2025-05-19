@@ -92,7 +92,7 @@ void klondike::play() {
     }
 }
 
-void klondike::startGame() {
+void klondike::startGame() const {
     this->deck->KlondikeFill();
     for (unsigned int i = 0; i < 7; ++i) {
         this->deck->shuffle();
@@ -107,6 +107,10 @@ void klondike::startGame() {
     for (unsigned int i = 0; i < 7; ++i) {
         tableaus[i]->getDeck()->getTail()->getData()->setFaceDown(false);
     }
+    cout << "List of piles: " << endl;
+    cout << " - Tableaus: T1, T2, T3, T4, T5, T6, T7" << endl;
+    cout << " - Draw pile: DP" << endl;
+    cout << " - Foundations: SF (spades), HF (hearts), DF (diamonds), CF (clovers)" << endl;
     this->showBoard();
 }
 
@@ -139,26 +143,35 @@ void klondike::showBoard() const {
 }
 
 int klondike::getUserMove() {
-    cout << "Options:" << endl;
-    cout << " (" << EXIT_GAME << ") Exit game" << endl;
-    cout << " (" << DRAW_CARD << ") Draw a card" << endl;
-    cout << " (" << MOVE_CARD << ") Move a card" << endl;
-    cout << "Enter a number: ";
     int input;
-    cin >> input;
-    switch (input) {
-        case EXIT_GAME:
-            cout << "Exiting game..." << endl;
-            return EXIT_GAME;
-        case DRAW_CARD:
-            this->drawCard();
-            return DRAW_CARD;
-        case MOVE_CARD:
-            this->moveCard();
-            return MOVE_CARD;
-        default:
+    bool validInput = false;
+    
+    while (true) {
+        cout << "Options:" << endl;
+        cout << " (" << EXIT_GAME << ") Exit game" << endl;
+        cout << " (" << DRAW_CARD << ") Draw a card" << endl;
+        cout << " (" << MOVE_CARD << ") Move a card" << endl;
+        cout << "Enter a number: ";
+        if (!(cin >> input)) {
+            cin.clear();
+            cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             cout << "Invalid input. Please try again!" << endl;
-            return -1;
+            continue;
+        }
+        switch (input) {
+            case EXIT_GAME:
+                cout << "Exiting game..." << endl;
+                return EXIT_GAME;
+            case DRAW_CARD:
+                this->drawCard();
+                return DRAW_CARD;
+            case MOVE_CARD:
+                this->moveCard();
+                return MOVE_CARD;
+            default:
+                cout << "Invalid input. Please try again!" << endl;
+                cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        }
     }
 }
 
@@ -173,10 +186,6 @@ void klondike::drawCard() const {
 
 void klondike::moveCard() {
     string sourcePile, targetPile;
-    cout << "List of piles: " << endl;
-    cout << " - Tableaus: T1, T2, T3, T4, T5, T6, T7" << endl;
-    cout << " - Draw pile: DP" << endl;
-    cout << " - Foundations: SF (spades), HF (hearts), DF (diamonds), CF (clovers)" << endl;
     cout << "Enter the pile to move a card from: ";
     cin >> sourcePile;
     while (this->getTargetDeck(sourcePile) == nullptr) {
@@ -191,85 +200,125 @@ void klondike::moveCard() {
         cin >> targetPile;
     }
     Deck *targetDeck = this->getTargetDeck(targetPile);
-    // FIXME check move validity
-    // additional nullptr check
+
+    // additional checks for nullptrs and empty decks
     if (sourceDeck == nullptr || targetDeck == nullptr) {
         cout << "Invalid move: source or target deck is nullptr!" << endl;
         return;
     }
-    // additional check for empty source deck
     if (sourceDeck->size() == 0) {
         cout << "Invalid move: source deck has no card to move!" << endl;
         return;
     }
-    if (this->moveCardCheck(*sourceDeck, *targetDeck)) {
-        sourceDeck->MoveLastCardTo(*targetDeck);
+
+    int numCards = 1;
+    // only ask for the number of cards if it's a tableau-to-tableau move and the source has multiple cards
+    if (this->isTableauToTableau(*sourceDeck, *targetDeck) && sourceDeck->size() > 1) {
+        cout << "Enter the number of cards to move (1-" << sourceDeck->size() << "): ";
+        cin >> numCards;
+        while (numCards < 1 || numCards > sourceDeck->size()) {
+            cout << "Invalid number of cards! Please enter again: ";
+            cin >> numCards;
+        }
+    }
+
+    if (this->moveCardCheck(*sourceDeck, *targetDeck, numCards)) {
+        if (numCards == 1) {
+            sourceDeck->MoveLastCardTo(*targetDeck);
+        } else {
+            sourceDeck->MoveCardSequence(*targetDeck, numCards);
+        }
         targetDeck->getDeck()->getTail()->getData()->setFaceDown(false);
-        if (sourceDeck->size() > 0) sourceDeck->getDeck()->getTail()->getData()->setFaceDown(false);
+        if (sourceDeck->size() > 0) {
+            sourceDeck->getDeck()->getTail()->getData()->setFaceDown(false);
+        }
     } else {
         cout << "Invalid move! Please try again!" << endl;
     }
-
 }
 
-bool klondike::moveCardCheck(Deck &source, Deck &target) const {
+bool klondike::moveCardCheck(Deck &source, Deck &target, const int numCards) const {
+    if (source.size() == 0 || numCards > source.size()) return false;
+    
+    // get the bottom card of the sequence being moved
+    Node* current = source.getDeck()->getTail();
+    for (int i = 0; i < numCards - 1; i++) {
+        if (!current || !current->getPrev()) return false;
+        current = current->getPrev();
+    }
+    const Card* bottomCard = current->getData();
+    const Card* targetCard = target.size() > 0 ? target.getDeck()->getTail()->getData() : nullptr;
     const Card* sourceCard = source.getDeck()->getTail()->getData();
 
-    // debug output
-    cout << "Moving: ";
-    sourceCard->DisplayCard();
+
+    // Debug output
+    cout << "\nMoving sequence starting with: ";
+    bottomCard->DisplayCard();
     cout << " to ";
-    if (target.getDeck()->size() > 0) {
-        target.getDeck()->getTail()->getData()->DisplayCard();
+    if (targetCard) {
+        targetCard->DisplayCard();
     } else {
         cout << "empty pile";
     }
     cout << endl;
 
-    // for empty target decks:
-    if (target.getDeck()->size() == 0) {
-        // empty foundations only allow aces
-        if (&target == this->spadeFoundation || &target == this->heartFoundation ||
-            &target == this->diamondFoundation || &target == this->cloverFoundation) {
-            return (sourceCard->getVal() == 1) && (
-                (&target == this->spadeFoundation && sourceCard->getSuit() == "Spade") ||
-                (&target == this->heartFoundation && sourceCard->getSuit() == "Heart") ||
-                (&target == this->diamondFoundation && sourceCard->getSuit() == "Diamond") ||
-                (&target == this->cloverFoundation && sourceCard->getSuit() == "Clover"));
+    // for foundation piles
+    if (&target == spadeFoundation || &target == heartFoundation || 
+        &target == diamondFoundation || &target == cloverFoundation) {
+        if (numCards > 1) {
+            cout << "Can only move one card to foundation" << endl;
+            return false;
         }
-        // empty tableaus only allow kings
-        return sourceCard->getVal() == 13;
+        // for empty foundation, only accept ace of matching suit
+        if (target.size() == 0) {
+            if (sourceCard->getVal() != 1) {
+                cout << "Only Aces can start a foundation pile" << endl;
+                return false;
+            }
+            // Check if card matches foundation suit
+            return ((&target == spadeFoundation && sourceCard->getSuit() == "Spade") ||
+                    (&target == heartFoundation && sourceCard->getSuit() == "Heart") ||
+                    (&target == diamondFoundation && sourceCard->getSuit() == "Diamond") ||
+                    (&target == cloverFoundation && sourceCard->getSuit() == "Clover"));
+        }
+        // for non-empty foundation, check suit and sequential build-up
+        return (sourceCard->getSuit() == targetCard->getSuit() &&
+                sourceCard->getVal() == targetCard->getVal() + 1);
     }
 
-    // for non-empty target decks:
-    const Card* targetCard = target.getDeck()->getTail()->getData();
-    const bool sameSuit = (sourceCard->getSuit() == targetCard->getSuit());
-    const bool sameColor = (sourceCard->getColor() == targetCard->getColor());
-    const bool oneRankHigher = (sourceCard->getVal() == targetCard->getVal() + 1);
-    const bool oneRankLower = (sourceCard->getVal() == targetCard->getVal() - 1);
+    // for tableau to tableau moves
+    if (isTableauToTableau(source, target)) {
+        // for multiple cards, check if they form a valid sequence
+        if (numCards > 1) {
+            if (!source.IsValidCardSequence(numCards - 1)) {
+                cout << "Invalid sequence of cards" << endl;
+                return false;
+            }
+        }
+        // empty tableau can only accept Kings
+        if (target.size() == 0) {
+            return bottomCard->getVal() == 13;
+        }
+        // check if the bottom card can be placed on the target card
+        return (bottomCard->getColor() != targetCard->getColor() && 
+                bottomCard->getVal() == targetCard->getVal() - 1);
+    }
 
+    // for draw pile to tableau moves
+    if (&source == drawPile) {
+        if (numCards > 1) {
+            cout << "Can only move one card from draw pile" << endl;
+            return false;
+        }
+        // empty tableau can only accept Kings
+        if (target.size() == 0) {
+            return bottomCard->getVal() == 13;
+        }
+        // check color and value
+        return (bottomCard->getColor() != targetCard->getColor() && 
+                bottomCard->getVal() == targetCard->getVal() - 1);
+    }
 
-    // case 1: draw pile -> foundation
-    if (&source == this->drawPile && (&target == this->spadeFoundation || &target == this->heartFoundation || &target == this->diamondFoundation || &target == this->cloverFoundation)) {
-        return (sameSuit && oneRankHigher);
-    }
-    // case 2: draw pile -> tableau
-    if (&source == this->drawPile && (&target == this->tableau1 || &target == this->tableau2 || &target == this->tableau3 || &target == this->tableau4 || &target == this->tableau5 || &target == this->tableau6 || &target == this->tableau7)) {
-        return (!sameColor && oneRankLower);
-    }
-    // case 3: tableau -> foundation
-    if ((&source == this->tableau1 || &source == this->tableau2 || &source == this->tableau3 || &source == this->tableau4 || &source == this->tableau5 || &source == this->tableau6 || &source == this->tableau7) && (&target == this->spadeFoundation || &target == this->heartFoundation || &target == this->diamondFoundation || &target == this->cloverFoundation)) {
-        return (sameSuit && oneRankHigher);
-    }
-    // case 4: tableau -> tableau (multiple cards can be moved at once)
-    if ((&source == this->tableau1 || &source == this->tableau2 || &source == this->tableau3 || &source == this->tableau4 || &source == this->tableau5 || &source == this->tableau6 || &source == this->tableau7) && (&target == this->tableau1 || &target == this->tableau2 || &target == this->tableau3 || &target == this->tableau4 || &target == this->tableau5 || &target == this->tableau6 || &target == this->tableau7)) {
-        // FIXME moving multiple cards?
-        return (!sameColor && oneRankLower);
-    }
-    // case 5: foundation -> tableau
-    if ((&source == this->spadeFoundation || &source == this->heartFoundation || &source == this->diamondFoundation || &source == this->cloverFoundation) && (&target == this->tableau1 || &target == this->tableau2 || &target == this->tableau3 || &target == this->tableau4 || &target == this->tableau5 || &target == this->tableau6 || &target == this->tableau7)) {
-        return (!sameColor && oneRankLower);
-    }
     return false;
 }
 
@@ -301,4 +350,11 @@ Deck *klondike::getTargetDeck(const string& initials) const {
     } else {
         return nullptr;
     }
+}
+
+bool klondike::isTableauToTableau(const Deck &source, const Deck &target) const {
+    if ((&source == this->tableau1 || &source == this->tableau2 || &source == this->tableau3 || &source == this->tableau4 || &source == this->tableau5 || &source == this->tableau6 || &source == this->tableau7) && (&target == this->tableau1 || &target == this->tableau2 || &target == this->tableau3 || &target == this->tableau4 || &target == this->tableau5 || &target == this->tableau6 || &target == this->tableau7)) {
+        return true;
+    }
+    return false;
 }

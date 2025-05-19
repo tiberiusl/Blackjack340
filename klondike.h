@@ -26,14 +26,14 @@ public:
     klondike(const klondike& original);
     klondike& operator=(const klondike& original);
     void play();
-    void startGame();
+    void startGame() const;
     void showBoard() const;
     int getUserMove();
     void drawCard() const;
     void moveCard();
-    bool moveCardCheck(Deck& source, Deck& target) const;
+    bool moveCardCheck(Deck& source, Deck& target, int numCards = 1) const;
     Deck* getTargetDeck(const std::string& initials) const;
-
+    bool isTableauToTableau(const Deck& source, const Deck& target) const;
 };
 
 
