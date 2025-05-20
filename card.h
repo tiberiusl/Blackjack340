@@ -17,7 +17,7 @@ class Card {
         std::string name;
         // Stores numerical value as string
 
-        bool facedown = false;
+        bool facedown = true;
         // the card is face-down/hidden if true, revealed if false
 
     public:
@@ -40,7 +40,8 @@ class Card {
 
         bool getFaceDown() const;
         void setFaceDown(bool newFaceDown);
-        void PrintCardIcon() const;
+        void DisplayCard() const;
+        std::string getColor() const;
 
 };
 

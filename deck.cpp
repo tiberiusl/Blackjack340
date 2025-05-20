@@ -17,6 +17,29 @@ Deck::~Deck() {
     
 }
 
+Deck::Deck(const Deck& original) {
+    this->deck = new LinkedList;
+    this->generator.seed(static_cast<unsigned int>(time(nullptr)));
+    Node* current = original.deck->getHead();
+    while (current != nullptr) {
+        Card* cardCopy = current->getData()->clone();
+        this->deck->push_back(cardCopy);
+        current = current->getNext();
+    }
+}
+
+Deck& Deck::operator=(const Deck& original) {
+    if (this == &original) return *this;
+    this->deck->clear();
+    Node* current = original.deck->getHead();
+    while (current != nullptr) {
+        Card* cardCopy = current->getData()->clone();
+        this->deck->push_back(cardCopy);
+        current = current->getNext();
+    }
+    return *this;
+}
+
 void Deck::clearDeck() {
     this->deck->clear();
 }
@@ -182,4 +205,116 @@ int Deck::size() const {
 
 LinkedList* Deck::getDeck() {
     return this->deck;
+}
+
+//
+void Deck::KlondikeFill() const {
+    for (int i = 1; i < 14; ++i) {
+        Card* spade = new Spade(i);
+        this->deck->push_back(spade);
+        Card* heart = new Heart(i);
+        this->deck->push_back(heart);
+        Card* diamond = new Diamond(i);
+        this->deck->push_back(diamond);
+        Card* clover = new Clover(i);
+        this->deck->push_back(clover);
+    }
+}
+void Deck::KlondikePrintDeck() const {
+    const Node* current = this->deck->getHead();
+    while (current) {
+        current->getData()->DisplayCard();
+        std::cout << " ";
+        current = current->getNext();
+    }
+}
+void Deck::MoveLastCardTo(Deck &targetDeck) {
+    Card* card = this->pop_back();
+    if (card != nullptr) {
+        targetDeck.getDeck()->push_back(card);
+    }
+}
+void Deck::MoveCardSequence(Deck &targetDeck, const int numCards) {
+    if (numCards <= 0 || numCards > this->size()) {
+        return;
+    }
+
+    // first collect cards and their face-up states
+    std::vector<std::pair<Card*, bool>> cardsToMove;
+    Node* current = this->deck->getTail();
+    for (int i = 0; i < numCards && current != nullptr; i++) {
+        cardsToMove.push_back({current->getData()->clone(), !current->getData()->getFaceDown()});
+        current = current->getPrev();
+    }
+
+    // now move the cards in the correct order (from bottom to top)
+    for (int i = cardsToMove.size() - 1; i >= 0; i--) {
+        Card* cardCopy = cardsToMove.at(i).first;
+        cardCopy->setFaceDown(false);
+        targetDeck.getDeck()->push_back(cardCopy);
+        // delete the original card from the source deck
+        if (this->deck->getTail() != nullptr) {
+            this->deck->deleteNode(this->deck->getTail());
+        }
+    }
+
+    // if there are any cards left in the source pile, make sure the top one is face-up
+    if (this->deck->getTail() != nullptr) {
+        this->deck->getTail()->getData()->setFaceDown(false);
+    }
+}
+bool Deck::IsValidCardSequence(int startIndex) const {
+    // get to the starting point of the sequence
+    Node* current = this->deck->getTail();
+    Node* bottomCard = current;
+    
+    // move to the bottom card of the sequence being moved
+    for (int i = 0; i < startIndex; i++) {
+        if (!current) return false;
+        current = current->getPrev();
+        bottomCard = current;
+    }
+    
+    if (!bottomCard) return false;
+
+    /*
+    // debug output
+    std::cout << "Starting sequence check from: ";
+    bottomCard->getData()->DisplayCard();
+    std::cout << std::endl;
+    */
+
+    // check the sequence from bottom to top
+    current = bottomCard;
+    while (current && current->getNext()) {
+        Card* lowerCard = current->getData();
+        Card* upperCard = current->getNext()->getData();
+        
+        // skip face-down cards
+        if (lowerCard->getFaceDown() || upperCard->getFaceDown()) {
+            std::cout << "Cannot move face-down cards" << std::endl;
+            return false;
+        }
+        
+        // debug output
+        std::cout << "Comparing: ";
+        lowerCard->DisplayCard();
+        std::cout << " with ";
+        upperCard->DisplayCard();
+        std::cout << std::endl;
+        
+        // check if the sequence follows sequence rules
+        if (lowerCard->getColor() == upperCard->getColor()) {
+            std::cout << "Invalid: Same colors" << std::endl;
+            return false;
+        }
+        if (lowerCard->getVal() != upperCard->getVal() + 1) {
+            std::cout << "Invalid: Not descending sequence" << std::endl;
+            return false;
+        }
+        current = current->getNext();
+    }
+    
+    std::cout << "Sequence is valid" << std::endl;
+    return true;
 }

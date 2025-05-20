@@ -16,7 +16,10 @@ class Deck {
 
     public:
         Deck(); 
-        ~Deck(); 
+        ~Deck();
+        // needed a copy constructor to use for the klondike copy constructor
+        Deck(const Deck& original);
+        Deck& operator=(const Deck& original);
 
         void fill();
         void shuffle(); 
@@ -25,7 +28,12 @@ class Deck {
         void printDeck() const; //created for testing purposes
         void clearDeck();
         LinkedList* getDeck();
-           
+
+        void KlondikeFill() const;
+        void KlondikePrintDeck() const;
+        void MoveLastCardTo(Deck& targetDeck);
+        void MoveCardSequence(Deck& targetDeck, int numCards);
+        bool IsValidCardSequence(int startIndex) const;
 };
 
 
