@@ -88,6 +88,10 @@ void klondike::play() {
         if (this->getUserMove() == EXIT_GAME) {
             break;
         }
+        if (this->win()) {
+            cout << "Congratulations! You won!" << endl;
+            break;
+        }
         this->showBoard();
     }
 }
@@ -144,7 +148,6 @@ void klondike::showBoard() const {
 
 int klondike::getUserMove() {
     int input;
-    bool validInput = false;
     
     while (true) {
         cout << "Options:" << endl;
@@ -176,11 +179,20 @@ int klondike::getUserMove() {
 }
 
 void klondike::drawCard() const {
-    if (this->deck->size() != 0) {
+    if (this->deck->size() == 0 && this->drawPile->size() == 0) {
+        cout << "There are no cards left to draw!" << endl;
+    } else if (this->deck->size() == 0) {
+        cout << "Drawing back from the start of the draw pile..." << endl;
+        while (drawPile->size() > 0) {
+            Card* card = drawPile->pop_back();
+            if (card != nullptr) {
+                card->setFaceDown(false);
+                deck->getDeck()->push_back(card);
+            }
+        }
+    } else {
         this->deck->MoveLastCardTo(*this->drawPile);
         this->drawPile->getDeck()->getTail()->getData()->setFaceDown(false);
-    } else {
-        cout << "There are no cards left to draw!" << endl;
     }
 }
 
@@ -250,7 +262,7 @@ bool klondike::moveCardCheck(Deck &source, Deck &target, const int numCards) con
     const Card* targetCard = target.size() > 0 ? target.getDeck()->getTail()->getData() : nullptr;
     const Card* sourceCard = source.getDeck()->getTail()->getData();
 
-
+    /*
     // Debug output
     cout << "\nMoving sequence starting with: ";
     bottomCard->DisplayCard();
@@ -261,6 +273,7 @@ bool klondike::moveCardCheck(Deck &source, Deck &target, const int numCards) con
         cout << "empty pile";
     }
     cout << endl;
+    */
 
     // for foundation piles
     if (&target == spadeFoundation || &target == heartFoundation || 
@@ -354,6 +367,13 @@ Deck *klondike::getTargetDeck(const string& initials) const {
 
 bool klondike::isTableauToTableau(const Deck &source, const Deck &target) const {
     if ((&source == this->tableau1 || &source == this->tableau2 || &source == this->tableau3 || &source == this->tableau4 || &source == this->tableau5 || &source == this->tableau6 || &source == this->tableau7) && (&target == this->tableau1 || &target == this->tableau2 || &target == this->tableau3 || &target == this->tableau4 || &target == this->tableau5 || &target == this->tableau6 || &target == this->tableau7)) {
+        return true;
+    }
+    return false;
+}
+
+bool klondike::win() const {
+    if (this->tableau1->size() == 13 && this->tableau2->size() == 13 && this->tableau3->size() == 13 && this->tableau4->size() == 13 && this->tableau5->size() == 13 && this->tableau6->size() == 13 && this->tableau7->size() == 13) {
         return true;
     }
     return false;

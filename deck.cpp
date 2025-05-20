@@ -249,7 +249,7 @@ void Deck::MoveCardSequence(Deck &targetDeck, const int numCards) {
 
     // now move the cards in the correct order (from bottom to top)
     for (int i = cardsToMove.size() - 1; i >= 0; i--) {
-        Card* cardCopy = cardsToMove[i].first;
+        Card* cardCopy = cardsToMove.at(i).first;
         cardCopy->setFaceDown(false);
         targetDeck.getDeck()->push_back(cardCopy);
         // delete the original card from the source deck
@@ -276,12 +276,14 @@ bool Deck::IsValidCardSequence(int startIndex) const {
     }
     
     if (!bottomCard) return false;
-    
+
+    /*
     // debug output
     std::cout << "Starting sequence check from: ";
     bottomCard->getData()->DisplayCard();
     std::cout << std::endl;
-    
+    */
+
     // check the sequence from bottom to top
     current = bottomCard;
     while (current && current->getNext()) {

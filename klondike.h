@@ -34,6 +34,7 @@ public:
     bool moveCardCheck(Deck& source, Deck& target, int numCards = 1) const;
     Deck* getTargetDeck(const std::string& initials) const;
     bool isTableauToTableau(const Deck& source, const Deck& target) const;
+    bool win() const;
 };
 
 
