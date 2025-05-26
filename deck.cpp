@@ -295,13 +295,15 @@ bool Deck::IsValidCardSequence(int startIndex) const {
             std::cout << "Cannot move face-down cards" << std::endl;
             return false;
         }
-        
+
+        /*
         // debug output
         std::cout << "Comparing: ";
         lowerCard->DisplayCard();
         std::cout << " with ";
         upperCard->DisplayCard();
         std::cout << std::endl;
+        */
         
         // check if the sequence follows sequence rules
         if (lowerCard->getColor() == upperCard->getColor()) {
@@ -314,7 +316,11 @@ bool Deck::IsValidCardSequence(int startIndex) const {
         }
         current = current->getNext();
     }
-    
+
+    /*
+    debug output
     std::cout << "Sequence is valid" << std::endl;
+    */
+
     return true;
 }
